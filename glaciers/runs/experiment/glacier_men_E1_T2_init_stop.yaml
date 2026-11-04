@@ -1,0 +1,146 @@
+# @package _global_
+# glacier_men (Mendenhall Glacier); data/glacier_men/start_50m.nc: 354 x 409 cells at 50 m, 43,626 domain ice cells (40 floating) + 121 quasi-rigid band cells, observed speed up to 163 m/yr.
+# Domain: RGI 6 outline RGI60-01.00709 (trimmed by the DEM lake); neighbouring icefield ice is part of the DEM surface = bed (rock walls).
+# Method: scenario E1 (forced: ELA +180 m over 30 yr), online network (prep/methods/hybrid.yaml),
+# retraining every 2nd step with igm's native nbit schedule, as the jak study
+# studies/jak_nbit_mt5_25yr (the schedule is set per run there: nbit 25 for t < 1 yr, then n).
+# Weertman sliding with the tau_ref field of the input: velocity-calibrated (igm time_relaxation, outputs/glacier_men_calib: 110 updates, alpha 0.5, eps 5 m/yr, r_max 0.5, cold Newton-CG solves), prior tau_ref_sia = SIA local balance
+# (sliding.tau_ref is only the fallback),
+# prep/forcing/glacier_men.yaml scenario E1.
+# With init_stop: the initial training (at most 4000 iterations) stops once its error against a
+# direct solve of the initial state is <= 1 % grounded and <= 2.5 % floating (or after 500
+# iterations without gain); the direct solve uses the cg_newton block below (as prep/methods/exact.yaml).
+# Written by hand (2026-10-01) from the GENERATED glacier_men_E1_hybrid.yaml: nbit_init,
+# nbit_warmup, nbit, retrain_freq, init_stop and cg_newton differ. Run from igm-marine/:
+#   igm_run +experiment=glacier_men_E1_T2_init_stop
+defaults:
+- /user/conf/processes@processes: [iceflow_geometry, save_times]
+- /user/conf/outputs@outputs: marine_ts
+- override /inputs: [local]
+- override /processes: [iceflow_geometry, smb, iceflow, calving_rate, time, save_times, thk]
+- override /outputs: [write_ncdf, marine_ts]
+core:
+  print_comp: false
+inputs:
+  local:
+    filename: glacier_men/start_50m.nc
+processes:
+  time:
+    cfl: 0.3
+    cfl_percentile: 100.0
+    step_max: 0.1
+    start: 0.0
+    end: 30.0
+    save: 2.5
+  iceflow:
+    physics:
+      energy_components: [viscosity, gravity, sliding, floating]
+      ice_density: 917.0
+      water_density: 1000.0
+      cf_eswn: []
+      viscosity:
+        arrhenius: 75.7
+        exponent: 3.0
+      sliding:
+        law: weertman
+        tau_ref: 1.8035
+        u_ref: 100.0
+        exponent: 3.0
+        regularization: 1.0
+        use_mask_gr: true
+    numerics:
+      Nz: 2
+      basis_vertical: molho
+      basis_horizontal: q1
+    unified:
+      inputs: [thk, usurf, arrhenius, tau_ref, dX, water_level]
+      normalization:
+        method: fixed
+        fixed:
+          inputs_offsets:
+            thk: 0.0
+            usurf: 1135.49
+            arrhenius: 75.7
+            tau_ref: 1.6569
+            dX: 50.0
+            water_level: 0.0
+          inputs_variances:
+            thk: 60834.0
+            usurf: 140699.0
+            arrhenius: 5730.49
+            tau_ref: 1.84599
+            dX: 1.0
+            water_level: 37562.4
+      mapping: network
+      network:
+        pretrained: false
+        seed: 0
+        architecture: hybrid_dahunet_fno
+        params:
+          nb_out_filter: 16
+          nb_layers: 12
+          conv_ker_size: 3
+          residual: true
+          width: 32
+          modes1: 8
+          modes2: 8
+          fno_layers: 2
+      optimizer: ss_esoap
+      ss_esoap:
+        lr_init: 0.0003
+        lr: 0.0003
+      nbit_init: 4000
+      nbit_warmup: -1
+      nbit: [[0.0, 25], [1.0, 1]]
+      retrain_freq: 2
+      display:
+        print_cost: false
+      init_stop:
+        enabled: true
+        target_grounded: 1.0
+        target_floating: 2.5
+        patience: 500
+      cg_newton:
+        preconditioner: barotropic_multigrid
+        hvp_mode: banded
+        probe_mode: autodiff
+        probe_batch: 9
+        damping: 1.0e-16
+        damping_adaptive: true
+        damping_min: 1.0e-26
+        cg_max_iter: 4000
+        warm_start: false
+  thk:
+    scheme: explicit
+    ratio_density: 0.917
+    front:
+      method: sub_grid
+      first_order: true
+      threshold: flux
+      fixed: false
+      min_thickness: 0.0
+    boundary:
+      left: zero
+      right: zero
+      top: zero
+      bottom: zero
+    remove_rigid_body_modes: true
+  smb:
+    method: simple
+    simple:
+      update_freq: 1.0
+      array: [[time, gradabl, gradacc, ela, accmax], [0.0, 0.009, 0.005, 1235.66, 2.0], [30.0, 0.009,
+          0.005, 1415.66, 2.0]]
+  calving_rate:
+    law: water_depth
+    water_depth:
+      k: 2.0
+outputs:
+  write_ncdf:
+    vars_to_save: [topg, usurf, lsurf, thk, Href, ice_area_fraction, iceflow_input_thk, iceflow_input_usurf,
+      smb, bmb, water_level, velbar_mag, velsurf_mag, velbase_mag, uvelsurf, vvelsurf, calving_rate, frontal_melt_rate,
+      calved_thk, ocean_thermal_forcing]
+    complevel: 1
+  marine_ts:
+    freq: 0.25
+    flowline: data/glacier_men/flowline.csv

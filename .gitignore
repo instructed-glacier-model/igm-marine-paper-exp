@@ -1,0 +1,21 @@
+# IGM / Hydra run outputs and downloaded raw data (recreated by the run scripts)
+/*/runs/outputs/
+/*/runs/geometry_response/outputs/
+/*/runs/multirun/
+*/runs/raw/
+*/runs/work/
+*/runs/cases/
+*/runs/results/summary.*
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# LaTeX build files of the schematic
+*.aux
+*.log
+
+# Figures: the PDFs are shipped, the PNGs are not
+*/figure/*.png
+*/figure/*.svg

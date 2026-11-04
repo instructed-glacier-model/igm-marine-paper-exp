@@ -1,0 +1,3 @@
+mismip_ts:
+  output_file: mismip_ts.csv   # in the run folder
+  freq: 1.0                    # years between rows (0 = every step); save times always get a row

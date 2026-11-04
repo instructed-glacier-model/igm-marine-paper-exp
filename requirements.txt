@@ -1,0 +1,9 @@
+# To redraw the figures (not to run IGM: see README.md, "IGM version")
+numpy
+pandas
+matplotlib>=3.8
+xarray
+netCDF4
+cmcrameri
+# The figures are set in Nimbus Sans (package fonts-urw-base35 on Debian/Ubuntu, urw-base35-fonts on Fedora/RHEL);
+# without it, Helvetica, Arial or DejaVu Sans is used, which changes text widths slightly.

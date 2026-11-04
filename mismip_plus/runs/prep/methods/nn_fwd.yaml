@@ -1,0 +1,12 @@
+# Protocol runs with the emulator instead of cg_newton (the *_nn experiments): the hybrid
+# network of nn.yaml, trained on the fly with SS-eSOAP, with more training than the cheap
+# spin-up emulator (nbit 2, retrain every 5th step) since the transient response is the
+# result: a long initial fit to the starting state (nbit_init 5000) and nbit 10 per step,
+# retrained every step (the igm-pablo tuning: retrain_freq 1 is essential; nbit is the main
+# accuracy lever, try 20 with processes.iceflow.unified.nbit=20).
+processes:
+  iceflow:
+    unified:
+      nbit_init: 5000
+      nbit: 10
+      retrain_freq: 1

@@ -1,0 +1,160 @@
+# @package _global_
+# glacier_pig (Pine Island Glacier); data/glacier_pig/start_1km.nc: 469 x 564 cells at 1000 m, 142,091 domain ice cells (6,537 floating) + 5,299 quasi-rigid band cells, observed speed up to 5209 m/yr.
+# Domain: De Rydt et al. (2021, TC 15, 113) model domain: 135,000 km2 grounded catchment (Rignot et al., 2011) + floating extension; outline of their Ua mesh (OSF doi:10.17605/OSF.IO/TEKRF, optim_1996_gaA1_gaC1_gsA25000_gsC25000_m3.nc, alpha 8 km).
+# Method: scenario W1 (forced: +1 K over 5 yr, then held), online network (prep/methods/hybrid.yaml),
+# schedule T2 of studies/jak_adaptive_nbit: 20 training iterations per retrain until 1 yr, then 1,
+# retraining every 2nd step (igm's native nbit schedule), as the jak run glacier_jak_P1_30_T2_init_stop.
+# Weertman sliding with the tau_ref field of the input: velocity-calibrated (igm time_relaxation, outputs/glacier_pig_calib: 110 updates, alpha 0.5, eps 5 m/yr, r_max 0.5, cold Newton-CG solves), prior tau_ref_sia = SIA local balance
+# (sliding.tau_ref is only the fallback),
+# prep/forcing/glacier_pig.yaml scenario W1.
+# With init_stop: the initial training (at most 4000 iterations) stops once its error against a
+# direct solve of the initial state is <= 1 % grounded and <= 2.5 % floating (or after 500
+# iterations without gain); the direct solve uses the cg_newton block below (as prep/methods/exact.yaml).
+# Written by hand (2026-09-30) from the GENERATED glacier_pig_W1_hybrid.yaml: nbit_init,
+# nbit_warmup, nbit, retrain_freq, init_stop and cg_newton differ. Run from igm-marine/:
+#   igm_run +experiment=glacier_pig_W1_T2_init_stop
+#   (or ./run_igm.sh $(./pick_gpu.sh) igm-32 NAME glacier_pig_W1_T2_init_stop)
+defaults:
+- /user/conf/processes@processes: [iceflow_geometry, tf_correction, flux_correction, save_times, thin_ice]
+- /user/conf/outputs@outputs: marine_ts
+- override /inputs: [local]
+- override /processes: [iceflow_geometry, ocean, tf_correction, iceflow, bmb, flux_correction, time, save_times,
+    thk, thin_ice]
+- override /outputs: [write_ncdf, marine_ts]
+core:
+  print_comp: false
+inputs:
+  local:
+    filename: glacier_pig/start_1km.nc
+processes:
+  time:
+    cfl: 0.3
+    cfl_percentile: 100.0
+    step_max: 0.1
+    start: 0.0
+    end: 50.0
+    save: 2.5
+  iceflow:
+    physics:
+      energy_components: [viscosity, gravity, sliding, floating]
+      ice_density: 917.0
+      water_density: 1027.0
+      cf_eswn: []
+      viscosity:
+        arrhenius: 11.0
+        exponent: 3.0
+      sliding:
+        law: weertman
+        tau_ref: 0.110517
+        u_ref: 100.0
+        exponent: 3.0
+        regularization: 1.0
+        use_mask_gr: true
+    numerics:
+      Nz: 2
+      basis_vertical: molho
+      basis_horizontal: q1
+    unified:
+      inputs: [thk, usurf, arrhenius, tau_ref, dX, water_level]
+      normalization:
+        method: fixed
+        fixed:
+          inputs_offsets:
+            thk: 0.0
+            usurf: 924.665
+            arrhenius: 11.0
+            tau_ref: 0.20244
+            dX: 1000.0
+            water_level: 0.0
+          inputs_variances:
+            thk: 3099930.0
+            usurf: 123702.0
+            arrhenius: 121.0
+            tau_ref: 0.072564
+            dX: 1.0
+            water_level: 1976240.0
+      mapping: network
+      network:
+        pretrained: false
+        seed: 0
+        architecture: hybrid_dahunet_fno
+        params:
+          nb_out_filter: 16
+          nb_layers: 12
+          conv_ker_size: 3
+          residual: true
+          width: 32
+          modes1: 8
+          modes2: 8
+          fno_layers: 2
+      optimizer: ss_esoap
+      ss_esoap:
+        lr_init: 0.0003
+        lr: 0.0003
+      nbit_init: 4000
+      nbit_warmup: -1
+      nbit: [[0.0, 20], [1.0, 1]]
+      retrain_freq: 2
+      display:
+        print_cost: false
+      init_stop:
+        enabled: true
+        target_grounded: 1.0
+        target_floating: 2.5
+        patience: 500
+      cg_newton:
+        preconditioner: barotropic_multigrid
+        hvp_mode: banded
+        probe_mode: autodiff
+        probe_batch: 9
+        damping: 1.0e-16
+        damping_adaptive: true
+        damping_min: 1.0e-26
+        cg_max_iter: 4000
+        warm_start: false
+  thk:
+    scheme: explicit
+    ratio_density: 0.8928919182083739
+    front:
+      method: sub_grid
+      first_order: true
+      threshold: flux
+      fixed: true
+      min_thickness: 0.0
+    boundary:
+      left: zero
+      right: zero
+      top: zero
+      bottom: zero
+    remove_rigid_body_modes: true
+  ocean:
+    method: profile
+    profile:
+      array: [[z, temp, salinity], [0.0, -1.8, 33.8], [-300.0, -1.5, 34.0], [-700.0, 1.0, 34.65], [-1500.0,
+          1.1, 34.72]]
+    anomaly_array: [[time, delta_temp], [0.0, 0.0], [5.0, 1.0], [50.0, 1.0]]
+  tf_correction:
+    file: glacier_pig/tf_correction_obs_1km.nc
+  flux_correction:
+    file: glacier_pig/flux_correction_obs_1km.nc
+  bmb:
+    method: quadratic
+    update_freq: 0.0
+    include_grounded_melt: false
+    allow_refreezing: true
+    grounding_line:
+      treatment: pmp
+    quadratic:
+      averaging: local
+      gamma0: 49500.0
+      delta_T: 0.0
+      water_equivalent: true
+outputs:
+  write_ncdf:
+    vars_to_save: [topg, usurf, lsurf, thk, Href, ice_area_fraction, iceflow_input_thk, iceflow_input_usurf,
+      smb, bmb, water_level, velbar_mag, velsurf_mag, velbase_mag, uvelsurf, vvelsurf, calving_rate, frontal_melt_rate,
+      calved_thk, ocean_thermal_forcing, ubar, vbar, divflux, shelf_melt_rate, grounded_fraction, tf_correction]
+    complevel: 1
+  marine_ts:
+    freq: 0.25
+    flowline: data/glacier_pig/flowline.csv

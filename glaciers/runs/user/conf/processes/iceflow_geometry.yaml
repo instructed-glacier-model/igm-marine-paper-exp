@@ -1,0 +1,2 @@
+iceflow_geometry:
+  enabled: true   # no options: copies state.thk / state.usurf to state.iceflow_input_*

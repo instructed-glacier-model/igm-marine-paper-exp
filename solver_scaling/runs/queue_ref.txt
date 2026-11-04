@@ -1,0 +1,17 @@
+# float64 tight references (igm-marine snapshot settings) + tighter continuation (stage B)
+ref_4km_molho reference molho double 4km
+ref_4km_ssa reference ssa double 4km
+ref_2km_molho reference molho double 2km
+ref_2km_ssa reference ssa double 2km
+ref_1km_molho reference molho double 1km
+ref_1km_ssa reference ssa double 1km
+ref_500m_molho reference molho double 500m
+ref_500m_ssa reference ssa double 500m
+refB_4km_molho reference molho double 4km --start-from cases/ref_4km_molho/reference.npz --cg-tol 1e-6 --halt-tol 0.01
+refB_4km_ssa reference ssa double 4km --start-from cases/ref_4km_ssa/reference.npz --cg-tol 1e-6 --halt-tol 0.01
+refB_2km_molho reference molho double 2km --start-from cases/ref_2km_molho/reference.npz --cg-tol 1e-6 --halt-tol 0.01
+refB_2km_ssa reference ssa double 2km --start-from cases/ref_2km_ssa/reference.npz --cg-tol 1e-6 --halt-tol 0.01
+refB_1km_molho reference molho double 1km --start-from cases/ref_1km_molho/reference.npz --cg-tol 1e-6 --halt-tol 0.01
+refB_1km_ssa reference ssa double 1km --start-from cases/ref_1km_ssa/reference.npz --cg-tol 1e-6 --halt-tol 0.01
+refB_500m_molho reference molho double 500m --start-from cases/ref_500m_molho/reference.npz --cg-tol 1e-6 --halt-tol 0.01
+refB_500m_ssa reference ssa double 500m --start-from cases/ref_500m_ssa/reference.npz --cg-tol 1e-6 --halt-tol 0.01

@@ -1,0 +1,2 @@
+replay_geometry:
+  source: ""   # outputs/RUN whose saved frames are replayed (relative to the project, or absolute)

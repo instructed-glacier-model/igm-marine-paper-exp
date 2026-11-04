@@ -1,0 +1,2 @@
+phase,rep,wall_s,status,stop,converged,finite,newton_its,cg_its_total,cg_its,cg_relres_last,zero_cg_steps,alpha_min,alphas,tf_peak_mib,smi_peak_mib,max_abs_u,error
+reference_initial,0,112.04895317499177,exception,,False,True,1,11,11,0.0010978008093500296,0,1.0,1,20805.943115234375,22800.0,12.908091629110721,ResourceExhaustedError()

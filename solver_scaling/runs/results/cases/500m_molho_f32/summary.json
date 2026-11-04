@@ -1,0 +1,102 @@
+{
+ "row": {
+  "case": "500m_molho_f32",
+  "res": "500m",
+  "spacing_m": 500,
+  "basis": "molho",
+  "precision": "float32",
+  "variant": "main",
+  "preconditioner": "BarotropicMultigridPreconditioner",
+  "probe_batch": 9,
+  "nx": 937,
+  "ny": 1129,
+  "dofs_raster": 4231492,
+  "dofs_active_ice": 2358240,
+  "compile_call_s": 68.20018780200917,
+  "compile_status": "exception",
+  "cold_converged": "0/5",
+  "cold_median_s": null,
+  "cold_min_s": null,
+  "cold_max_s": null,
+  "newton_its": null,
+  "cg_per_newton": null,
+  "time_per_newton_s": null,
+  "tf_peak_mib": 3937.750244140625,
+  "smi_peak_mib": 5794.0,
+  "relrmse_all": null,
+  "relrmse_grounded": null,
+  "relrmse_floating": null,
+  "flagged": 0,
+  "split_hessian_per_newton_s": null,
+  "split_cg_per_newton_s": null,
+  "error": "ResourceExhaustedError()"
+ },
+ "accuracy": [],
+ "split": null,
+ "environment": {
+  "host": "node28.octopoda",
+  "cuda_visible_devices": "1",
+  "gpu_index_physical": 1,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "compute_capability": [
+   8,
+   9
+  ],
+  "python": "3.10.20",
+  "tensorflow": "2.17.0",
+  "tf_cuda_build": "12.3",
+  "tf_cudnn_build": "8",
+  "igm_imported": "/home/tgregov/work/igm-32/igm-wt-058558bc/igm",
+  "driver_sha256": "782921ccfdf38ee04687f1696b2353901484b0a0dc77136b7a438b11f5dd2ccd",
+  "argv": [
+   "/home/tgregov/work/igm-32/pig_gpu_dof_benchmark/scripts/pig_diag_bench.py",
+   "--mode",
+   "timing",
+   "--basis",
+   "molho",
+   "--precision",
+   "single",
+   "--initial",
+   "/home/tgregov/work/igm-32/igm-marine/data/glacier_pig/perf/500m/initial.nc",
+   "--config",
+   "/home/tgregov/work/igm-32/pig_gpu_dof_benchmark/environment/run_config_resolved.yaml",
+   "--out",
+   "/home/tgregov/work/igm-32/igm-marine/studies/solver_scaling/cases/500m_molho_f32",
+   "--raw",
+   "/home/tgregov/work/igm-32/igm-marine/studies/solver_scaling/work/raw/500m_molho_f32",
+   "--gpu-index",
+   "1",
+   "--reps",
+   "5"
+  ],
+  "nvidia_smi_baseline_mib": 1.0
+ },
+ "settings": {
+  "nbit_init": 200,
+  "nbit": 20,
+  "cg_tol": 0.01,
+  "cg_max_iter": 4000,
+  "probe_batch": 9,
+  "halt": [
+   {
+    "criterion": "abs_change",
+    "metric": "u",
+    "abs_change": {
+     "tol": 1.0,
+     "reduction": "rmse",
+     "consecutive": 3
+    }
+   }
+  ],
+  "preconditioner_cfg": "barotropic_multigrid"
+ },
+ "setup": {
+  "load_initial_s": 0.6479143709875643,
+  "load_changed_s": 2.181011950597167e-06,
+  "iceflow_initialize_s": 1.8323286200029543,
+  "tf_peak_mib": 792.07080078125,
+  "preconditioner": "BarotropicMultigridPreconditioner",
+  "operator": "MOLHOBandedADOperator",
+  "precision": "<dtype: 'float32'>"
+ }
+}

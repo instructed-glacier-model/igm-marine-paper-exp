@@ -1,0 +1,2 @@
+phase,rep,wall_s,status,stop,converged,finite,newton_its,cg_its_total,cg_its,cg_relres_last,zero_cg_steps,alpha_min,alphas,tf_peak_mib,smi_peak_mib,max_abs_u,error
+reference_initial,0,37.83291455701692,ok,SUCCESS,True,True,4,697,202 144 181 170,4.0108123505306245e-06,0,0.0078125,1 1 0.25 0.00781,201.787353515625,674.0,3624.8035291056813,

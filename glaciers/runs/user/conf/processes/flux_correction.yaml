@@ -1,0 +1,5 @@
+flux_correction:
+  # Static flux correction C (m ice/yr) added to the SMB of the grounded ice (Hill et al. 2023;
+  # user/code/processes/flux_correction.py; tools/pig_balance.py fluxcorr)
+  file: glacier_pig/flux_correction_1km.nc   # netCDF under core.folder_data (data/), on the run grid
+  variable: flux_correction                  # the field (m ice/yr)

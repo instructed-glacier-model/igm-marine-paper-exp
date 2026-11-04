@@ -1,0 +1,2 @@
+load_network_weights:
+  source: ""   # outputs/RUN with weights/w_T.npz (save_network_weights), relative to the project or absolute

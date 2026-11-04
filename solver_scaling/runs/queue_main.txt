@@ -1,0 +1,17 @@
+# main matrix: paper settings (MOLHO probe_batch 9 from the run config; SSA 0), compile + 5 cold solves
+4km_molho_f32 timing molho single 4km --reps 5
+4km_ssa_f32 timing ssa single 4km --reps 5
+2km_molho_f32 timing molho single 2km --reps 5
+2km_ssa_f32 timing ssa single 2km --reps 5
+1km_molho_f32 timing molho single 1km --reps 5
+1km_ssa_f32 timing ssa single 1km --reps 5
+500m_molho_f32 timing molho single 500m --reps 5
+500m_ssa_f32 timing ssa single 500m --reps 5
+4km_molho_f64 timing molho double 4km --reps 5
+4km_ssa_f64 timing ssa double 4km --reps 5
+2km_molho_f64 timing molho double 2km --reps 5
+2km_ssa_f64 timing ssa double 2km --reps 5
+1km_molho_f64 timing molho double 1km --reps 5
+1km_ssa_f64 timing ssa double 1km --reps 5
+500m_molho_f64 timing molho double 500m --reps 5
+500m_ssa_f64 timing ssa double 500m --reps 5

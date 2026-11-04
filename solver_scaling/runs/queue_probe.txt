@@ -1,0 +1,11 @@
+# memory/speed probe: MOLHO cold solves (compile + 2 reps) at probe_batch settings
+probe_500m_molho_f32_pb3 timing molho single 500m --reps 2 --probe-batch 3
+probe_500m_molho_f32_pb1 timing molho single 500m --reps 2 --probe-batch 1
+probe_500m_molho_f32_pb0 timing molho single 500m --reps 2 --probe-batch 0
+probe_500m_molho_f64_pb3 timing molho double 500m --reps 2 --probe-batch 3
+probe_500m_molho_f64_pb1 timing molho double 500m --reps 2 --probe-batch 1
+probe_500m_molho_f64_pb0 timing molho double 500m --reps 2 --probe-batch 0
+probe_1km_molho_f32_pb9 timing molho single 1km --reps 2 --probe-batch 9
+probe_1km_molho_f32_pb3 timing molho single 1km --reps 2 --probe-batch 3
+probe_1km_molho_f32_pb1 timing molho single 1km --reps 2 --probe-batch 1
+probe_1km_molho_f32_pb0 timing molho single 1km --reps 2 --probe-batch 0

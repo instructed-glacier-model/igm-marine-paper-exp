@@ -1,0 +1,3 @@
+save_times:
+  times: [0.01, 0.05, 0.1, 0.25, 0.5]   # yr; extra save times (the early frames of the snapshot errors)
+  every: 1.0                            # yr; plus every multiple of this from the start (0 = none)

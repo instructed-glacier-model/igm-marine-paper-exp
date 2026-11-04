@@ -1,0 +1,2 @@
+thin_ice:
+  min_thickness: 0.01   # m; ice thinner than this is removed after each thk update (PISM ice_free_thickness_standard)

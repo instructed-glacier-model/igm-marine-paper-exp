@@ -1,0 +1,128 @@
+{
+ "row": {
+  "case": "1km_molho_f64",
+  "res": "1km",
+  "spacing_m": 1000,
+  "basis": "molho",
+  "precision": "float64",
+  "variant": "main",
+  "preconditioner": "BarotropicMultigridPreconditioner",
+  "probe_batch": 9,
+  "nx": 469,
+  "ny": 564,
+  "dofs_raster": 1058064,
+  "dofs_active_ice": 589560,
+  "compile_call_s": 115.13491871599399,
+  "compile_status": "ok",
+  "cold_converged": "5/5",
+  "cold_median_s": 14.589943011000287,
+  "cold_min_s": 14.587060662001022,
+  "cold_max_s": 14.605492717004381,
+  "newton_its": 9,
+  "cg_per_newton": 7.0,
+  "time_per_newton_s": 1.621104779000032,
+  "tf_peak_mib": 12963.980224609375,
+  "smi_peak_mib": 21496.0,
+  "relrmse_all": 1.7893388405635258e-07,
+  "relrmse_grounded": 7.832753397497125e-08,
+  "relrmse_floating": 2.201532640812212e-07,
+  "flagged": 0,
+  "split_hessian_per_newton_s": null,
+  "split_cg_per_newton_s": null,
+  "error": ""
+ },
+ "accuracy": [
+  {
+   "all": 1.7893388405635258e-07,
+   "grounded": 7.832753397497125e-08,
+   "floating": 2.201532640812212e-07
+  },
+  {
+   "all": 1.7893388405635258e-07,
+   "grounded": 7.832753397497125e-08,
+   "floating": 2.201532640812212e-07
+  },
+  {
+   "all": 1.7893388405635258e-07,
+   "grounded": 7.832753397497125e-08,
+   "floating": 2.201532640812212e-07
+  },
+  {
+   "all": 1.7893388405635258e-07,
+   "grounded": 7.832753397497125e-08,
+   "floating": 2.201532640812212e-07
+  },
+  {
+   "all": 1.7893388405635258e-07,
+   "grounded": 7.832753397497125e-08,
+   "floating": 2.201532640812212e-07
+  }
+ ],
+ "split": null,
+ "environment": {
+  "host": "node28.octopoda",
+  "cuda_visible_devices": "1",
+  "gpu_index_physical": 1,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "compute_capability": [
+   8,
+   9
+  ],
+  "python": "3.10.20",
+  "tensorflow": "2.17.0",
+  "tf_cuda_build": "12.3",
+  "tf_cudnn_build": "8",
+  "igm_imported": "/home/tgregov/work/igm-32/igm-wt-058558bc/igm",
+  "driver_sha256": "782921ccfdf38ee04687f1696b2353901484b0a0dc77136b7a438b11f5dd2ccd",
+  "argv": [
+   "/home/tgregov/work/igm-32/pig_gpu_dof_benchmark/scripts/pig_diag_bench.py",
+   "--mode",
+   "timing",
+   "--basis",
+   "molho",
+   "--precision",
+   "double",
+   "--initial",
+   "/home/tgregov/work/igm-32/igm-marine/data/glacier_pig/perf/1km/initial.nc",
+   "--config",
+   "/home/tgregov/work/igm-32/pig_gpu_dof_benchmark/environment/run_config_resolved.yaml",
+   "--out",
+   "/home/tgregov/work/igm-32/igm-marine/studies/solver_scaling/cases/1km_molho_f64",
+   "--raw",
+   "/home/tgregov/work/igm-32/igm-marine/studies/solver_scaling/work/raw/1km_molho_f64",
+   "--gpu-index",
+   "1",
+   "--reps",
+   "5"
+  ],
+  "nvidia_smi_baseline_mib": 1.0
+ },
+ "settings": {
+  "nbit_init": 200,
+  "nbit": 20,
+  "cg_tol": 0.01,
+  "cg_max_iter": 4000,
+  "probe_batch": 9,
+  "halt": [
+   {
+    "criterion": "abs_change",
+    "metric": "u",
+    "abs_change": {
+     "tol": 1.0,
+     "reduction": "rmse",
+     "consecutive": 3
+    }
+   }
+  ],
+  "preconditioner_cfg": "barotropic_multigrid"
+ },
+ "setup": {
+  "load_initial_s": 0.38562408500001766,
+  "load_changed_s": 6.450005457736552e-06,
+  "iceflow_initialize_s": 1.9651969990081852,
+  "tf_peak_mib": 434.86962890625,
+  "preconditioner": "BarotropicMultigridPreconditioner",
+  "operator": "MOLHOBandedADOperator",
+  "precision": "<dtype: 'float64'>"
+ }
+}

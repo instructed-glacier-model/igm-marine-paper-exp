@@ -1,0 +1,47 @@
+# Ice0 spin-up, stage 1 (ice0_nn_RES; user workflow 2026-09-26: "for each resolution, start
+# with a cheap nn, run it until convergence, then run for a few years cg_newton"): the hybrid
+# dahunet (16 x 12) + FNO (width 32, 8 x 8 modes, 2 layers) emulator of igm-marine / igm-pablo,
+# trained on the fly with SS-eSOAP (lr_init 3e-4, lr 1e-3), from a uniform 100-m slab, with
+# the cheap training budget of the earlier mismip-plus FNO spin-up: nbit 2, retrain every 5th
+# step, nbit_init 200. The FNO branch makes the floating ice move (a CNN alone leaves it static).
+# Measured (2 km, 100 m slab): 0.022 s per model year (1 km: 0.025), converged by ~10 kyr.
+# Its end state is a cg_newton steady state: the converged cg_newton finish (ice0_cg_RES)
+# kept x_GL(y=0) at 474.3 km and VAF within 1e-5 over 1.3 kyr (outputs/exploration/ice0_cgfinish_2km).
+# Heavier training (nbit 30, retrain every step) matched cg_newton over 100 yr but cost
+# 0.51 s/yr (cg_newton one iteration per step: 0.17). Starting from a thick profile with a
+# uniform thickness across flow blew the emulator up (lateral flow ~30 km/yr off the 500-m
+# side walls); a slab start is gentle (max 170 m/yr).
+processes:
+  iceflow:
+    numerics:
+      precision: single       # network training; the cg_newton runs use float64
+    unified:
+      mapping: network
+      network:
+        pretrained: false
+        seed: 0
+        architecture: hybrid_dahunet_fno
+        params:
+          nb_out_filter: 16
+          nb_layers: 12
+          conv_ker_size: 3
+          residual: true
+          width: 32
+          modes1: 8
+          modes2: 8
+          fno_layers: 2
+      optimizer: ss_esoap
+      ss_esoap: {lr_init: 3.0e-4, lr: 1.0e-3}
+      nbit_init: 200
+      nbit: 2
+      retrain_freq: 5
+      # fixed input normalisation on MISMIP+ scales (the igm defaults are glacier scales);
+      # offsets 0 for thk keep the zero padding meaning "no ice"; the constant fields
+      # (arrhenius, tau_ref, dX, water_level) map to 0
+      normalization:
+        method: fixed
+        fixed:
+          inputs_offsets: {thk: 0.0, usurf: 500.0, arrhenius: 20.0, tau_ref: 0.01, dX: 1000.0, water_level: 0.0}
+          inputs_variances: {thk: 1.5e+6, usurf: 4.0e+5, arrhenius: 400.0, tau_ref: 1.0e-4, dX: 1.0e+6, water_level: 1.0}
+      display:
+        print_cost: false

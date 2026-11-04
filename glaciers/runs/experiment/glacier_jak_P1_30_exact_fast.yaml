@@ -1,0 +1,205 @@
+# @package _global_
+# glacier_jak (Jakobshavn Isbrae); data/glacier_jak/start_150m.nc: 667 x 401 cells at 150 m, 260,457 domain ice cells (480 floating) + 30 quasi-rigid band cells, observed speed up to 14672 m/yr.
+# Domain: box x -195.5..-95.5, y -2305..-2245 km (EPSG:3413; igm-jakobshavn's box enlarged), all ice kept, free edges.
+# Method: scenario P1_30, exact fast Newton-CG (prep/methods/exact.yaml + exact_fast.yaml): the
+# trajectory reference of the network runs of scenario P1_30.
+# Weertman sliding with the tau_ref field of the input: velocity-calibrated (igm time_relaxation, outputs/glacier_jak_calib: 110 updates, alpha 0.5, eps 5 m/yr, r_max 0.5, cold Newton-CG solves), prior tau_ref_sia = SIA local balance
+# (sliding.tau_ref is only the fallback),
+# prep/forcing/glacier_jak.yaml scenario P1_30.
+# Written by hand (2026-09-30): experiment/glacier_jak_P1_30_hybrid.yaml (GENERATED) with its
+# processes.iceflow.unified block replaced by that of experiment/glacier_jak_exact_fast.yaml
+# (GENERATED; identity mapping, cg_newton, halt at 1 m/yr); nothing else differs.
+defaults:
+- /user/conf/processes@processes:
+  - iceflow_geometry
+  - save_times
+  - thin_ice
+- /user/conf/outputs@outputs: marine_ts
+- override /inputs:
+  - local
+- override /processes:
+  - iceflow_geometry
+  - ocean
+  - iceflow
+  - calving_rate
+  - bmb
+  - time
+  - save_times
+  - thk
+  - thin_ice
+- override /outputs:
+  - write_ncdf
+  - marine_ts
+core:
+  print_comp: false
+inputs:
+  local:
+    filename: glacier_jak/start_150m.nc
+processes:
+  time:
+    cfl: 0.3
+    cfl_percentile: 100.0
+    step_max: 0.1
+    start: 0.0
+    end: 30.0
+    save: 1.0
+  iceflow:
+    physics:
+      energy_components:
+      - viscosity
+      - gravity
+      - sliding
+      - floating
+      ice_density: 917.0
+      water_density: 1023.0
+      cf_eswn: []
+      viscosity:
+        arrhenius: 33.1
+        exponent: 3.0
+      sliding:
+        law: weertman
+        tau_ref: 0.0738739
+        u_ref: 100.0
+        exponent: 3.0
+        regularization: 1.0
+        use_mask_gr: true
+    numerics:
+      Nz: 2
+      basis_vertical: molho
+      basis_horizontal: q1
+    unified:
+      inputs:
+      - thk
+      - usurf
+      - arrhenius
+      - tau_ref
+      - dX
+      - water_level
+      mapping: identity
+      optimizer: cg_newton
+      line_search: armijo
+      nbit_init: 200
+      nbit: 20
+      retrain_freq: 1
+      cg_newton:
+        preconditioner: barotropic_multigrid
+        hvp_mode: banded
+        probe_mode: autodiff
+        probe_batch: 9
+        hvp_verify: false
+        operator_update_freq: 1
+        damping: 1.0e-16
+        damping_adaptive: true
+        damping_min: 1.0e-26
+        cg_tol: 0.01
+        cg_max_iter: 4000
+        warm_start: false
+        cold_restart_interval: 1.0
+        print_timing: true
+      halt:
+        freq: 1
+        raise_on_failure: true
+        success:
+        - criterion: abs_change
+          metric: u
+          abs_change:
+            tol: 1.0
+            reduction: rmse
+            consecutive: 3
+        failure:
+        - criterion: nan
+          metric: u
+        - criterion: inf
+          metric: u
+      display:
+        print_cost: false
+  thk:
+    scheme: explicit
+    ratio_density: 0.8963831867057673
+    front:
+      method: sub_grid
+      first_order: true
+      threshold: flux
+      fixed: false
+      min_thickness: 0.0
+    boundary:
+      left: dirichlet
+      right: dirichlet
+      top: dirichlet
+      bottom: dirichlet
+    remove_rigid_body_modes: true
+  ocean:
+    method: profile
+    profile:
+      array:
+      - - z
+        - temp
+        - salinity
+      - - 0.0
+        - 0.5
+        - 33.0
+      - - -150.0
+        - 0.5
+        - 33.8
+      - - -300.0
+        - 2.0
+        - 34.3
+      - - -1200.0
+        - 2.0
+        - 34.5
+    anomaly_array:
+    - - time
+      - delta_temp
+    - - 0.0
+      - 0.0
+    - - 30.0
+      - 2.0
+  bmb:
+    method: quadratic
+    update_freq: 0.0
+    include_grounded_melt: false
+    grounding_line:
+      treatment: nmp
+    quadratic:
+      averaging: local
+      delta_T: 0.0
+      water_equivalent: true
+      gamma0: 65317.1
+  calving_rate:
+    law: ice_speed
+    von_mises:
+      sigma_max_grounded: 1.0
+      sigma_max_floating: 0.5
+    frontal_melt:
+      method: none
+      field: frontal_melt_forcing
+    ice_speed:
+      factor: 1.0
+      front_velocity: -500.0
+outputs:
+  write_ncdf:
+    vars_to_save:
+    - topg
+    - usurf
+    - lsurf
+    - thk
+    - Href
+    - ice_area_fraction
+    - iceflow_input_thk
+    - iceflow_input_usurf
+    - smb
+    - bmb
+    - water_level
+    - velbar_mag
+    - velsurf_mag
+    - velbase_mag
+    - uvelsurf
+    - vvelsurf
+    - calving_rate
+    - frontal_melt_rate
+    - calved_thk
+    - ocean_thermal_forcing
+    complevel: 1
+  marine_ts:
+    freq: 0.05
+    flowline: data/glacier_jak/flowline.csv

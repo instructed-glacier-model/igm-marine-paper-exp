@@ -1,0 +1,6 @@
+steady_stop:
+  check_freq: 10.0     # years between samples of x_GL(y = 0) and VAF
+  window: 1000.0       # years; means over the last two windows are compared
+  min_years: 5000.0    # never stop before this run length
+  tol_gl: 500.0        # m, change of the window-mean x_GL(y = 0)
+  tol_vaf: 1.0e-3      # relative change of the window-mean volume above flotation

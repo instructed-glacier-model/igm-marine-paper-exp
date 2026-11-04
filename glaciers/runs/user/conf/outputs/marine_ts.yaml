@@ -1,0 +1,4 @@
+marine_ts:
+  output_file: marine_ts.csv            # in the run folder
+  freq: 0.25                            # years between rows (0 = every step); save times always get a row
+  flowline: data/glacier_jak/flowline.csv  # relative to the project root (tools/flowline.py)

@@ -1,0 +1,115 @@
+{
+ "mode": "reference",
+ "basis": "ssa",
+ "precision": "double",
+ "initial": "/home/tgregov/work/igm-32/igm-marine/data/glacier_pig/perf/2km/initial.nc",
+ "initial_sha256": "5f70e0012d636a9eb6b1d77c771a58398f11a150f5551351d74f269bd12c795c",
+ "changed": null,
+ "changed_sha256": null,
+ "settings": {
+  "nbit_init": 400,
+  "nbit": 20,
+  "cg_tol": 0.0001,
+  "cg_max_iter": 4000,
+  "probe_batch": 0,
+  "halt": [
+   {
+    "criterion": "abs_change",
+    "metric": "u",
+    "abs_change": {
+     "tol": 0.1,
+     "reduction": "rmse",
+     "consecutive": 3
+    }
+   }
+  ],
+  "preconditioner_cfg": "block_jacobi"
+ },
+ "setup": {
+  "load_initial_s": 0.34853722900152206,
+  "load_changed_s": 1.8139835447072983e-06,
+  "iceflow_initialize_s": 1.1977642150013708,
+  "tf_peak_mib": 36.91650390625,
+  "preconditioner": "SSABlockJacobiPreconditioner",
+  "operator": "SSABandedADOperator",
+  "precision": "<dtype: 'float64'>"
+ },
+ "dofs": {
+  "initial": {
+   "nx": 235,
+   "ny": 283,
+   "spacing_m": 2000.0,
+   "Nz": 1,
+   "components_per_node": 2,
+   "active_elements": 37206,
+   "supported_nodes": 37747,
+   "ice_nodes": 36846,
+   "active_ice_nodes": 36844,
+   "unsupported_ice_nodes": 2,
+   "supported_ice_free_nodes": 903,
+   "allocated_slots": 133010,
+   "active_ice_dofs": 73688,
+   "energy_carrying_dofs": 75494,
+   "fixed_slots": 57516
+  }
+ },
+ "environment": {
+  "host": "node31.octopoda",
+  "cuda_visible_devices": "0",
+  "gpu_index_physical": 0,
+  "gpu": "NVIDIA GeForce RTX 4090",
+  "compute_capability": [
+   8,
+   9
+  ],
+  "python": "3.10.20",
+  "tensorflow": "2.17.0",
+  "tf_cuda_build": "12.3",
+  "tf_cudnn_build": "8",
+  "igm_imported": "/home/tgregov/work/igm-32/igm-wt-058558bc/igm",
+  "driver_sha256": "782921ccfdf38ee04687f1696b2353901484b0a0dc77136b7a438b11f5dd2ccd",
+  "argv": [
+   "/home/tgregov/work/igm-32/pig_gpu_dof_benchmark/scripts/pig_diag_bench.py",
+   "--mode",
+   "reference",
+   "--basis",
+   "ssa",
+   "--precision",
+   "double",
+   "--initial",
+   "/home/tgregov/work/igm-32/igm-marine/data/glacier_pig/perf/2km/initial.nc",
+   "--config",
+   "/home/tgregov/work/igm-32/pig_gpu_dof_benchmark/environment/run_config_resolved.yaml",
+   "--out",
+   "/home/tgregov/work/igm-32/igm-marine/studies/solver_scaling/cases/ref_2km_ssa",
+   "--raw",
+   "/home/tgregov/work/igm-32/igm-marine/studies/solver_scaling/work/raw/ref_2km_ssa",
+   "--gpu-index",
+   "0"
+  ],
+  "nvidia_smi_baseline_mib": 1.0
+ },
+ "nvidia_smi_peak_mib": 674.0,
+ "rows": [
+  {
+   "phase": "reference_initial",
+   "rep": 0,
+   "wall_s": 38.40666615398368,
+   "status": "ok",
+   "stop": "SUCCESS",
+   "converged": true,
+   "finite": true,
+   "newton_its": 9,
+   "cg_its_total": 1823,
+   "cg_its": "166 232 248 247 251 245 164 197 73",
+   "cg_relres_last": 9.503247781733373e-05,
+   "zero_cg_steps": 0,
+   "alpha_min": 0.5,
+   "alphas": "1 1 1 1 1 1 0.5 1 1",
+   "tf_peak_mib": 201.786865234375,
+   "smi_peak_mib": 674.0,
+   "max_abs_u": 3624.8035679762343,
+   "error": null
+  }
+ ]
+}

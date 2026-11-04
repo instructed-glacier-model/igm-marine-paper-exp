@@ -1,0 +1,7 @@
+dx_km,scheme,x_front_km,analytic_km
+10,sub_grid,152.986,144.447
+5,sub_grid,147.987,144.447
+2.5,sub_grid,146.745,144.447
+10,level_set,145,144.447
+5,level_set,148.174,144.447
+2.5,level_set,146.948,144.447

@@ -1,0 +1,2 @@
+thin_ice_calving:
+  min_thk: 10.0   # m; floating ice thinner than this is removed after each thickness update

@@ -1,0 +1,5 @@
+tf_correction:
+  # Per-cell thermal-forcing correction dTF (K) added to state.ocean_thermal_forcing between
+  # the ocean and bmb processes (user/code/processes/tf_correction.py; tools/pig_balance.py field)
+  file: glacier_pig/tf_correction_1km.nc   # netCDF under core.folder_data (data/), on the run grid
+  variable: tf_correction                  # the field (K)

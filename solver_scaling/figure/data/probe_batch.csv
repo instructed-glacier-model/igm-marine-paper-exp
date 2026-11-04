@@ -1,0 +1,12 @@
+grid,precision,probe_batch,status,n_cold,compile_call_s,cold_median_s,newton_its,cg_its_total,time_per_newton_s,peak_gpu_gib,source
+1km,float32,0,ok,2,72.0996,4.39623,9,110,0.48847,1.19625,probe_1km_molho_f32_pb0
+1km,float32,1,ok,2,72.0911,3.93774,9,110,0.437526,1.57869,probe_1km_molho_f32_pb1
+1km,float32,3,ok,2,88.6354,3.43715,9,79,0.381906,2.88234,probe_1km_molho_f32_pb3
+1km,float32,9,ok,2,92.1577,3.93983,10,95,0.393983,6.41788,probe_1km_molho_f32_pb9
+1km,float64,9,ok,5,104.054,14.5669,9,63,1.61855,12.6748,1km_molho_f64 (main matrix)
+500m,float32,0,ok,2,86.0153,12.2485,9,83,1.36094,4.34579,probe_500m_molho_f32_pb0
+500m,float32,1,ok,2,85.6716,11.9504,9,83,1.32782,5.15526,probe_500m_molho_f32_pb1
+500m,float32,3,ok,2,104.099,16.6891,12,144,1.39076,10.242,probe_500m_molho_f32_pb3
+500m,float64,0,ok,2,134.236,58.655,9,82,6.51722,8.39923,probe_500m_molho_f64_pb0
+500m,float64,1,ok,2,133.272,58.148,9,82,6.46089,10.2185,probe_500m_molho_f64_pb1
+500m,float64,3,out_of_memory,0,,,,,,,probe_500m_molho_f64_pb3

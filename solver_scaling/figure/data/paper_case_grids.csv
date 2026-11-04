@@ -1,0 +1,13 @@
+case,spacing_m,nx,ny,nodes,basis,probe_batch,newton_cg_role
+Albrecht flowline (verification),10000,51,2,102,MOLHO,9,Newton-CG runs
+Albrecht flowline (verification),5000,101,2,202,MOLHO,9,Newton-CG runs
+Albrecht flowline (verification),2500,201,2,402,MOLHO,9,Newton-CG runs
+MISMIP+,1000,641,81,51921,MOLHO,9,emulator runs; Newton-CG check
+Mendenhall Glacier,50,354,409,144786,MOLHO,9,Newton-CG reference
+Pine Island Glacier,1000,469,564,264516,MOLHO,9,Newton-CG reference
+Sermeq Kujalleq,150,667,401,267467,MOLHO,9,Newton-CG reference
+Solver scaling (Pine Island),4000,118,142,16756,"MOLHO, SSA",9,cold solves (this figure); SSA uses 0
+Solver scaling (Pine Island),2000,235,283,66505,"MOLHO, SSA",9,cold solves (this figure); SSA uses 0
+Solver scaling (Pine Island),1000,469,564,264516,"MOLHO, SSA",9,cold solves (this figure); SSA uses 0
+Solver scaling (Pine Island),500,937,1129,1057873,"MOLHO, SSA",9,cold solves (this figure); SSA uses 0
+"Pablo Glacier (where 9 was chosen, not in the paper)",200,227,308,69916,MOLHO,9,probe_batch sweep 0/9/18/36

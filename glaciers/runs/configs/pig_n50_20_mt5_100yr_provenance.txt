@@ -1,0 +1,36 @@
+experiment: glacier_pig_W1_T2_init_stop
+overrides: processes.time.end=100.0 processes.thk.front.min_thickness=5.0 processes.iceflow.unified.nbit_init=4000 processes.iceflow.unified.nbit_warmup=-1 processes.iceflow.unified.nbit=[[0.0,50],[1.0,20]] processes.iceflow.unified.retrain_freq=2 processes.iceflow.unified.network.seed=0
+experiment_sha256: 426aebcf0446d19aa38feca29b6a2c8ef6335bdd21f2ce87a9673d8e51adc52d
+input: glacier_pig/start_1km.nc
+input_sha256: fe30f34c7815bb8ab0bb5f3e16c77da0e132ff89ca94cd53ddd9d469f11324b3
+host: node29.octopoda  CUDA_VISIBLE_DEVICES: 1
+gpu: NVIDIA GeForce RTX 4090, 580.178.04
+python: /home/tgregov/anaconda3/envs/igm-32/bin/python (igm-32)
+igm_src: /work/tgregov/igm-32/igm
+igm_head: 058558bc296acec7b02939cafa41d39184bbaad6 (dev)
+igm_diff_sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+igm_modified: 
+igm_untracked (sha256):
+user_code (sha256):
+  e6002f20b3cdfa2c7d97f5e4694c7b3054dce4c53c75da7f4f0462d112acf3a0  user/code/outputs/cfl_probe.py
+  8ef8b2c338ae3645fc5f968480bb7c27983ee9ff7a253f61d6322e6c8de47429  user/code/outputs/marine_ts.py
+  026764d3a67fcce499c81f53ba5994910023ff886b6aebd4d0faa0d547bb9cb9  user/code/processes/adaptive_nbit.py
+  3cf0184e922211882eaa5e77be9b54686ae52f135dcf68f9ba499eb17e3d402c  user/code/processes/flux_correction.py
+  ce03127117d51093bb07d885b15a8d3235d4a63ba057dfeec961bb16157e0cc4  user/code/processes/frontal_melt.py
+  8e0e0670e13f3c3902e30715db1a505dce01e2ae32562577f057700694a610d8  user/code/processes/iceflow_geometry.py
+  50f72cd02f175e433409da29e9a83803285b71edb6dc3e3785efa06d8fcfa1e2  user/code/processes/kori_nudge.py
+  d0f4f142d734fab0442e237b474b650117cd94fd529ed29e117ef32e792b33f7  user/code/processes/save_times.py
+  dccf7a829894146c05eed720c66a09271c770aff2585ecab0fe11f0325b5d764  user/code/processes/step_timer.py
+  f18f77619c998e8bca05bd8dcd58fcf1f40dfe1dc2848bf2481c1f982fb0a929  user/code/processes/tf_correction.py
+  eb5d2f196032768d306b047b4221b6cf0bcb477273ba794e2b287b908d77aaf8  user/code/processes/thin_ice.py
+  625a9a5b9bd5541aa1605446515d904d46e7bbd864499d9ef481383f31280ad5  user/conf/outputs/cfl_probe.yaml
+  57a0bc68f50fdd691bdea7347fdce4f2f8f5588fd907fa887c450aa7d99e9480  user/conf/outputs/marine_ts.yaml
+  18f421f994c0ced58c53f7f8eb1b50f551e6c5ea99d1f71a0258d6f4a058172c  user/conf/processes/adaptive_nbit.yaml
+  3bea328ece03be2d0386cd49ea4a9f8f31d55b33d7b5868cbea24e1a1a1889aa  user/conf/processes/flux_correction.yaml
+  e35ee4c5e1f5763fa02c1ec2f26e67d2bba4a8ae68a0b746e009f16f953d12ab  user/conf/processes/frontal_melt.yaml
+  592aa99b2efe2e882409a3b2d2b22a7e4dd86495bee04a13af55475c1d9c96d3  user/conf/processes/iceflow_geometry.yaml
+  ebb44b78cb7092326ea8d46db94d32dc89c5a7377f32863a6e9601cdf9afe122  user/conf/processes/kori_nudge.yaml
+  cb1d1426666b85c00af6febde70740a78491e6551f524d015aaf563cc3125087  user/conf/processes/save_times.yaml
+  75f634051eb5417cb2ce9637c8a701366a5b565af31560d90bee11287a4783ac  user/conf/processes/step_timer.yaml
+  fea2584aa5bfbd81ddff8437add609bb653b92a87c8c1859aa1e984153576076  user/conf/processes/tf_correction.yaml
+  8d4d89fc18f7387728c238505f320796f9ede5987cbdaff8c8954b057af5cfe7  user/conf/processes/thin_ice.yaml

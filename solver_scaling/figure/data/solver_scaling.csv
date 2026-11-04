@@ -1,0 +1,17 @@
+grid,spacing_m,basis,precision,nx,ny,dofs,dofs_active_ice,preconditioner,probe_batch,status,cold_median_s,cold_min_s,cold_max_s,compile_call_s,newton_its,cg_its_per_newton,time_per_newton_s,peak_gpu_gib,rel_rmse_vs_float64_ref,plotted
+4km,4000,MOLHO,float32,118,142,67024,36808,BarotropicMultigridPreconditioner,9,ok,1.13522,1.13385,1.14965,82.1436,9,6.22222,0.126136,0.514745,9.75735e-05,True
+2km,2000,MOLHO,float32,235,283,266020,147376,BarotropicMultigridPreconditioner,9,ok,1.75337,1.75019,1.76506,87.5143,10,6.6,0.175337,1.65467,3.81177e-06,True
+1km,1000,MOLHO,float32,469,564,1058064,589560,BarotropicMultigridPreconditioner,9,ok,3.98601,3.96317,4.00239,100.468,10,9.5,0.398601,6.44386,0.000191205,True
+500m,500,MOLHO,float32,937,1129,4231492,2358240,BarotropicMultigridPreconditioner,9,out_of_memory,,,,,,,,,,False
+4km,4000,MOLHO,float64,118,142,67024,36808,BarotropicMultigridPreconditioner,9,ok,1.91647,1.91536,1.93875,82.4986,9,7.44444,0.212941,0.873073,4.08478e-10,True
+2km,2000,MOLHO,float64,235,283,266020,147376,BarotropicMultigridPreconditioner,9,ok,4.38307,4.37801,4.38917,94.9978,9,7.88889,0.487007,3.25448,3.54922e-08,True
+1km,1000,MOLHO,float64,469,564,1058064,589560,BarotropicMultigridPreconditioner,9,ok,14.5899,14.5871,14.6055,115.135,9,7,1.6211,12.6601,1.78934e-07,True
+500m,500,MOLHO,float64,937,1129,4231492,2358240,BarotropicMultigridPreconditioner,9,out_of_memory,,,,,,,,,,False
+4km,4000,SSA,float32,118,142,33512,18404,SSABlockJacobiPreconditioner,0,ok,0.936281,0.931977,0.945193,43.1562,9,58.2222,0.104031,0.0228701,0.000290786,True
+2km,2000,SSA,float32,235,283,133010,73688,SSABlockJacobiPreconditioner,0,ok,0.976854,0.971829,1.00624,38.8425,9,98,0.108539,0.103734,5.25294e-05,True
+1km,1000,SSA,float32,469,564,529032,294780,SSABlockJacobiPreconditioner,0,ok,1.13339,1.12827,1.13652,44.2041,9,204.222,0.125933,0.41803,0.000177435,True
+500m,500,SSA,float32,937,1129,2115746,1179120,SSABlockJacobiPreconditioner,0,ok,2.99073,2.98972,2.99347,42.6202,9,400.667,0.332304,1.35146,3.27191e-05,True
+4km,4000,SSA,float64,118,142,33512,18404,SSABlockJacobiPreconditioner,0,ok,0.924046,0.918002,0.931686,40.0227,9,58.7778,0.102672,0.0479298,2.8327e-10,True
+2km,2000,SSA,float64,235,283,133010,73688,SSABlockJacobiPreconditioner,0,ok,0.985686,0.983132,0.997985,38.4047,9,104.222,0.109521,0.198744,8.41706e-06,True
+1km,1000,SSA,float64,469,564,529032,294780,SSABlockJacobiPreconditioner,0,ok,1.75683,1.7533,1.75876,44.8537,9,204.222,0.195204,0.805365,1.44625e-05,True
+500m,500,SSA,float64,937,1129,2115746,1179120,SSABlockJacobiPreconditioner,0,ok,7.67912,7.67475,7.68317,49.7979,9,400.444,0.853235,2.57647,3.24511e-05,True

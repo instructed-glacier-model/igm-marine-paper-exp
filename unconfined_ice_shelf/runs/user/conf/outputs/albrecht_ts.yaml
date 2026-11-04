@@ -1,0 +1,3 @@
+albrecht_ts:
+  output_file: albrecht_ts.csv   # in the run folder
+  freq: 0.0                      # years between rows (0 = every step); save times always get a row

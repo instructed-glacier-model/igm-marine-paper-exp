@@ -1,0 +1,616 @@
+cwd: ${get_cwd:0}
+core:
+  url_data: ''
+  folder_data: data
+  logging_file: ''
+  logging: false
+  tf_logging_level: WARNING
+  igm_logging_level: WARNING
+  hardware:
+    gpu_info: false
+    visible_gpus:
+    - 0
+    strategy: none
+    profile: false
+  print_params: false
+  print_comp: true
+  print_info: false
+  print_imported_modules: false
+  check_compat_params: true
+  check_module_needs: false
+  aliases:
+    builtin: []
+    extra_files: []
+  structure:
+    root_foldername: user
+    conf_foldername: conf
+    code_foldername: code
+    input_modules_foldername: inputs
+    process_modules_foldername: processes
+    assimilation_modules_foldername: assimilations
+    output_modules_foldername: outputs
+processes:
+  time:
+    start: 0.0
+    end: 100.0
+    save: 10.0
+    cfl: 0.3
+    step_max: 1.0
+    cfl_percentile: 100.0
+  smb:
+    method: simple
+    smb_outside_icemask: -10.0
+    simple:
+      update_freq: 1000000000.0
+      file: param.txt
+      array:
+      - - time
+        - gradabl
+        - gradacc
+        - ela
+        - accmax
+      - - 0.0
+        - 0.0
+        - 1.0
+        - -10000.0
+        - 0.3
+      - - 1000000.0
+        - 0.0
+        - 1.0
+        - -10000.0
+        - 0.3
+    oggm:
+      update_freq: 1.0
+      ice_density: 910.0
+      wat_density: 1000.0
+      melt_enhancer: 1.0
+    accpdd:
+      update_freq: 1.0
+      refreeze_factor: 0.6
+      thr_temp_snow: 0.0
+      thr_temp_rain: 2.0
+      melt_factor_snow: 1.095726596343
+      melt_factor_ice: 2.921937590248
+      shift_hydro_year: 0.75
+      ice_density: 910.0
+      wat_density: 1000.0
+      smb_maximum_accumulation: 6.0
+  bmb:
+    method: prescribed
+    update_freq: 0.0
+    include_grounded_melt: false
+    melt_enhancer: 1.0
+    allow_refreezing: false
+    ocean_connected_only: true
+    grounding_line:
+      treatment: nmp
+      sub_samples: 4
+    physics:
+      c_ocean: 3974.0
+      L_ice: 334000.0
+    prescribed:
+      form: mismip_plus
+      value: 0.0
+      field: prescribed_melt_rate
+      mismip_plus:
+        omega: 0.2
+        H0: 75.0
+        z0: -100.0
+    quadratic:
+      averaging: shelf
+      gamma0: 14477.0
+      delta_T: 0.0
+      water_equivalent: true
+    pico:
+      n_boxes: 5
+      gamma_T: 2.0e-05
+      overturning: 1000000.0
+      rho_star: 1033.0
+      alpha: 7.5e-05
+      beta: 0.00077
+      reference_distance: 0.0
+      continental_shelf_depth: -800.0
+      maximum_ice_rise_area: 0.0
+      freezing_point:
+        a: -0.0572
+        b: 0.0788
+        c: 7.77e-08
+    picop:
+      M0: 10.0
+      gamma1: 0.545
+      gamma2: 3.5e-05
+      Cd_Gamma_T: 0.0011
+      Cd_Gamma_TS0: 0.0006
+      E0: 0.036
+      Cd: 0.0025
+      x0: 0.56
+    plume:
+      gamma_T: 0.00059
+      E0: 0.036
+      Cd: 0.0025
+      C_eps: 0.6
+      alpha: 3.87e-05
+      beta: 0.000786
+    grounding_line_depth:
+      epsilon: 1.0e-05
+      tol: 0.01
+      max_iter: 10000
+  thk:
+    scheme: explicit
+    slope_type: superbee
+    divflux_smooth_sigma: 0.0
+    ratio_density: 0.892996
+    domain:
+      constraints: []
+    remove_rigid_body_modes: false
+    boundary:
+      left: symmetric
+      right: zero
+      top: symmetric
+      bottom: symmetric
+    implicit:
+      theta: 1.0
+      solver:
+        tol: 1.0e-06
+        max_iter: 1000
+        max_restarts: 8
+        failure_policy: stop
+    ffsl:
+      max_deformation: 0.5
+      max_substeps: 128
+      limit_policy: stop
+    calving_front: false
+    method: sub_grid
+    front_slope_type: godunov
+    interior_slope_type: superbee
+    only_marine: true
+    extend_halo: 2
+    extend_thresh: 0.95
+    sub_grid:
+      href_cap_factor: 2.0
+      promote_iters: 5
+      calve_cliff: true
+    level_set:
+      only_near_front: false
+      band_cells: 3
+      reinit_freq: 5
+      reinit_iter: 5
+      reinit_iter_initial: 50
+      phi_eps: 0.001
+      cap_partial: false
+  iceflow:
+    method: unified
+    force_max_velbar: 0.0
+    physics:
+      energy_components:
+      - viscosity
+      - gravity
+      - sliding
+      - floating
+      sliding:
+        law: weertman
+        use_mask_gr: true
+        slidingco: 0.0464
+        tau_ref: 0.01
+        regularization: 1.0
+        exponent: 3.0
+        u_ref: 1.0
+        N_ref: 1.0
+        mu: 0.4
+        q_exponent: 1.0
+        phi: 30.0
+        phi_min: 15.0
+        phi_max: 45.0
+        bed_min: .nan
+        bed_max: .nan
+        tauc_min: 0.1
+        tauc_max: 10000.0
+        tauc_ice_free: 1.0
+      gravity_cst: 9.81
+      ice_density: 918.0
+      water_density: 1028.0
+      viscosity:
+        arrhenius: 25.2455
+        enhancement_factor: 1.0
+        exponent: 3.0
+        regularization: 1.0e-05
+      thr_ice_thk: 0.1
+      max_sr: 1.0e+20
+      force_negative_gravitational_energy: false
+      cf_eswn:
+      - E
+    numerics:
+      precision: double
+      ord_grad_u: l2_weighted
+      ord_grad_theta: l2_weighted
+      Nz: 2
+      vert_spacing: 4.0
+      basis_horizontal: q1
+      basis_vertical: molho
+    solver:
+      step_size: 1.0
+      nbitmax: 100
+      optimizer: adam
+      print_cost: false
+      fieldin:
+      - thk
+      - usurf
+      - arrhenius
+      - slidingco
+      - dX
+    emulator:
+      fieldin:
+      - thk
+      - usurf
+      - arrhenius
+      - slidingco
+      - dX
+      retrain_freq: 10
+      print_cost: false
+      lr: 2.0e-05
+      lr_init: 0.0001
+      lr_decay: 0.95
+      warm_up_it: -10000000000.0
+      nbit_init: 1
+      nbit: 1
+      framesizemax: 1000
+      split_patch_method: sequential
+      pretrained: true
+      name: ''
+      save_model: false
+      exclude_borders: 0
+      optimizer: Adam
+      optimizer_clipnorm: 1.0
+      optimizer_epsilon: 1.0e-07
+      save_cost: ''
+      output_directory: ''
+      plot_sol: false
+      pertubate: false
+      network:
+        architecture: cnn
+        params: {}
+        multiple_window_size: 0
+        activation: LeakyReLU
+        nb_layers: 16
+        nb_blocks: 4
+        nb_out_filter: 32
+        conv_ker_size: 3
+        dropout_rate: 0.0
+        weight_initialization: glorot_uniform
+        cnn3d_for_vertical: false
+        batch_norm: false
+        l2_reg: 0.0
+        separable: false
+        residual: true
+    diagnostic:
+      save_freq: 1
+      filename_metrics: diagnostic_metrics.txt
+    unified:
+      mapping: identity
+      bcs:
+      - dirichlet
+      - periodic_ns
+      bc:
+        dirichlet:
+          left: 0.0
+          right: null
+          top: null
+          bottom: null
+      optimizer: cg_newton
+      nbit: 20
+      nbit_init: 200
+      nbit_warmup: -1
+      retrain_freq: 1
+      retrain_threshold: 10000000000.0
+      newton:
+        damping: 1.0e-06
+      adam:
+        lr: 0.0005
+        lr_init: 0.002
+        lr_decay: 1.0
+        lr_decay_steps: 1000
+        optimizer_clipnorm: 1.0
+      lbfgs:
+        memory: 10
+        alpha_min: 0.0
+      cg_newton:
+        cg_tol: 0.01
+        warm_start: false
+        cold_restart_interval: 1.0
+        cg_max_iter: 4000
+        line_search_compile: false
+        print_timing: false
+        damping: 1.0e-16
+        damping_adaptive: true
+        damping_min: 1.0e-26
+        damping_max: 100.0
+        damping_down: 0.25
+        damping_up: 4.0
+        hvp_mode: banded
+        hvp_verify: false
+        probe_mode: autodiff
+        probe_batch: 9
+        preconditioner: barotropic_multigrid
+        operator_update_freq: 1
+        precond_update_freq: 1
+        multigrid:
+          smoother_weight: 0.6666666666666666
+          smoother_steps: 1
+          coarse_size: 8
+      error_estimator:
+        enabled: false
+        freq: 250
+        estimate_at_start: true
+        cg_iters:
+        - 10
+        cg_tol: 1.0e-06
+        hvp_mode: banded
+        probe_mode: fd
+        hvp_verify: false
+        preconditioner: barotropic_multigrid
+        multigrid:
+          smoother_weight: 0.6666666666666666
+          smoother_steps: 1
+          coarse_size: 8
+        damping: 1.0e-16
+        operator_update_freq: 0
+        operator_refresh_rel_change: 0.05
+        newton_steps: 2
+        disable_xla: true
+        precision: double
+        use_basin_mask: true
+        record_path: error_estimate.jsonl
+        save_fields_dir: null
+        publish_field: true
+        reference_file: null
+        verbose: true
+      gauss_newton:
+        cg_max_iter: 50
+        forcing_eta_min: 0.01
+        forcing_eta_max: 0.5
+        forcing_gamma: 0.9
+        forcing_power: 1.5
+        damping_rel_init: 0.01
+        damping_rel_min: 1.0e-08
+        damping_rel_max: 100.0
+        lm_ratio_low: 0.25
+        lm_ratio_high: 0.75
+        damping_down: 0.25
+        damping_up: 4.0
+        solve_retries: 3
+        power_iterations: 6
+        armijo_c1: 0.0001
+        armijo_contraction: 0.5
+        line_search_max_iter: 12
+        hu_mode: banded
+        probe_mode: autodiff
+        hvp_verify: false
+        preconditioner: auto
+        precond_update_freq: 3
+        print_timing: false
+        nystrom:
+          rank: 32
+          seed: 0
+          sketch_memory_gb: 2.0
+          minimum_rank: 8
+          print_timing: false
+      tridiag_newton:
+        assembly: probe
+        scalar_flowline: false
+        damping: 1.0e-06
+        damping_adaptive: false
+        damping_min: 1.0e-12
+        damping_max: 100.0
+        damping_down: 0.25
+        damping_up: 4.0
+        probe_mode: fd
+      trust_region:
+        cg_max_iter: 100
+        cg_tol: 1.0e-12
+        delta_init: 100.0
+        delta_max: 10000000000.0
+        eta: 0.15
+        damping: 1.0e-06
+      muon:
+        lr: 0.02
+        momentum: 0.95
+        ns_steps: 5
+        lr_1d: 0.0003
+      soap:
+        lr: 0.0003
+        beta1: 0.95
+        beta2: 0.999
+        eps: 1.0e-08
+        precond_freq: 10
+        damping: 1.0e-08
+      ss_esoap:
+        lr: 0.0003
+        lr_init: 0.001
+        beta1: 0.9
+        beta2: 0.95
+        eps: 1.0e-08
+        tau_trigger: 0.2
+        check_freq: 1
+        warmup: 0
+        tau_min: 0.1
+        self_scaling: true
+        damping: 1.0e-08
+        weight_decay: 0.0
+        lr_drop_iter: -1
+        lr_drop_factor: 1.0
+        lr_auto_drop_patience: 0
+        lr_auto_drop_warmup: 500
+        lr_auto_drop_rel_improvement: 0.01
+      sequential:
+        stages: []
+      line_search: armijo
+      inputs:
+      - thk
+      - usurf
+      - arrhenius
+      - tau_ref
+      - dX
+      - water_level
+      normalization:
+        method: fixed
+        fixed:
+          inputs_offsets:
+            thk: 0.0
+            usurf: 1500.0
+            arrhenius: 78.0
+            tau_ref: 0.15
+            slidingco: 0.05
+            dX: 100.0
+            water_level: 0.0
+            effective_pressure: 0.0
+            X: 0.0
+            'Y': 0.0
+          inputs_variances:
+            thk: 40000.0
+            usurf: 1000000.0
+            arrhenius: 1600.0
+            tau_ref: 0.004
+            slidingco: 0.001
+            dX: 10000.0
+            water_level: 250000.0
+            effective_pressure: 4.0
+            X: 2500000000.0
+            'Y': 2500000000.0
+      network:
+        debug_mode: false
+        debug_freq: 100
+        pretrained: false
+        pretrained_path: ''
+        print_summary: false
+        output_scale: 1.0
+        seed: null
+        architecture: dahunet
+        params:
+          backend: cnn
+          features:
+          - dsdx
+          - dsdy
+          - grad_s
+          - u_sia
+          - u_weertman
+          nb_out_filter: 24
+          nb_layers: 6
+          conv_ker_size: 3
+          residual: true
+      adaptive_time:
+        method: none
+        enabled_observation: false
+        credit:
+          kappa: 0.001
+          retrain_freq_max: 100
+          record_path: credit_log.jsonl
+      adaptive_patching:
+        enabled: false
+        windows: peak_augmented
+        n_extra_peaks: -1
+        patch_size: 64
+        batch_cells_max: 2250000
+        selection: scored
+        min_thk_in_window: 0.0
+        score_alpha: 1.0
+        temporal_downsample: 1
+        shuffle_training_windows: true
+        record_training_windows: false
+        record_path: null
+        rng_seed: null
+        rescore_freq: 10
+      data_preparation:
+        framesizemax: 100000000
+        patches_per_batch: 1
+      halt:
+        freq: 1
+        raise_on_failure: true
+        success:
+        - criterion: abs_change
+          metric: u
+          abs_change:
+            tol: 1.0
+            reduction: rmse
+            consecutive: 3
+        failure:
+        - criterion: 'nan'
+          metric: u
+        - criterion: 'inf'
+          metric: u
+        criteria:
+          rel_tol:
+            tol: 0.001
+            ord: l2
+          rel_initial:
+            tol: 0.001
+            ord: l2
+          abs_tol:
+            tol: 0.001
+            ord: l2_weighted
+          abs_change:
+            tol: 1.0
+            reduction: max
+            consecutive: 1
+          patience:
+            patience: 100
+          'inf': {}
+          'nan': {}
+        metrics:
+          theta: {}
+          u: {}
+          cost: {}
+          grad_u_norm: {}
+          grad_theta_norm: {}
+      display:
+        print_cost: false
+        print_cost_freq: 1
+    vertical_velocity:
+      enabled: false
+      version: 2
+      method: kinematic
+inputs:
+  local:
+    type: netcdf
+    filename: restart/ice0_1km.nc
+    coarsening:
+      boundary: trim
+      ratio: 1.0
+    crop:
+      xmin: null
+      xmax: null
+      ymin: null
+      ymax: null
+    icemask:
+      include: false
+      shapefile: icemask.shp
+      invert: false
+    water_level:
+      include: false
+      value: 0.0
+outputs:
+  write_ncdf:
+    output_file: output.nc
+    keep_open: false
+    complevel: 1
+    vars_to_save:
+    - topg
+    - thk
+    - usurf
+    - lsurf
+    - water_level
+    - smb
+    - ubar
+    - vbar
+    - velbar_mag
+    - uvelsurf
+    - vvelsurf
+    - velsurf_mag
+    - uvelbase
+    - vvelbase
+    - velbase_mag
+    - bmb
+    - shelf_melt_rate
+    - grounded_fraction
+  mismip_ts:
+    output_file: mismip_ts.csv
+    freq: 1.0

@@ -1,0 +1,25 @@
+% Fig. 1 of the paper: schematic cross-section of a marine-terminated glacier.
+% Build: pdflatex fig_01_schematic.tex  (needs TikZ, bm and the standalone class)
+\documentclass[tikz,border=2pt]{standalone}
+\usepackage{times}   % the text font of the Copernicus class
+\usepackage{bm}
+\usetikzlibrary{arrows.meta}
+% notation macros of the paper
+\newcommand{\subs}[1]{_{\mathrm{#1}}}
+\newcommand{\fl}{\subs{f}}
+\newcommand{\gr}{\subs{g}}
+\newcommand{\gl}{\subs{gl}}
+\newcommand{\cf}{\subs{cf}}
+\newcommand{\wl}{\subs{wl}}
+\newcommand{\basal}{\subs{b}}
+\newcommand{\surf}{\subs{s}}
+\newcommand{\ext}{\subs{ext}}
+% colours of the paper
+\definecolor{color_bed}{RGB}{184,136,119}
+\definecolor{color_sea}{RGB}{168,202,221}
+\definecolor{color_ice}{RGB}{236,240,241}
+\definecolor{color_flat}{RGB}{108,47,138}
+\definecolor{blue_custom}{RGB}{42,120,214}
+\begin{document}
+\input{schematic_body}
+\end{document}
