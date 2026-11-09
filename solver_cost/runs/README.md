@@ -1,8 +1,9 @@
-# Cost and scaling of the Newton–CG solver (paper Sect. 5.4, Fig. 7)
+# Cost of the reference solver: scaling and comparison with PISM (paper Sect. 5.4, App. D, Fig. 7, Table D1)
 
 Cold solves (from zero velocity) of the Newton–CG solver with the identity mapping on the Pine Island geometry at
 t = 0, at 4, 2, 1 and 0.5 km, for the MOLHO and SSA vertical bases, in single and double precision, on one RTX 4090;
-and the effect of the batching of the Hessian probes (`probe_batch`).
+the effect of the batching of the Hessian probes (`probe_batch`); and, in [`pism/`](pism/README.md), the same solves
+with PISM 2.3.1 on 32 CPU cores (Fig. 7a–b, Table D1).
 
 ## Set-up
 
@@ -73,12 +74,13 @@ IGM source tree).
 | step | command | output | cost |
 |---|---|---|---|
 | 0 (optional) grids | `python resample_pig.py` | `data/{4km,2km,1km,500m}/initial.nc`, `data/audit.json` (shipped) | a minute, CPU |
-| 1 timed cases | `./run_queue.sh GPU queue_main.txt` | `cases/<case>/`, `work/raw/<case>/` (raw velocities), `work/logs/` | ~1 h, 1 GPU |
+| 1 timed cases | `./run_queue.sh GPU queue_main.txt` | `cases/<case>/`, `work/raw/<case>/` (raw velocities), `work/logs/` | ~1.5 h, 1 GPU |
 | 2 references | `./run_queue.sh GPU queue_ref.txt` | `cases/ref_*`, `cases/refB_*` | ~1 h |
 | 3 probe batching | `./run_queue.sh GPU queue_probe.txt` | `cases/probe_*` | ~30 min |
 | 4 analysis | `python analyze.py` | `results/scaling.csv`, `results/reference_stability.csv`, `cases/*/summary.json` | a minute, CPU |
 | 5 figure data | `python export_figure_data.py` | `../figure/data/*.csv` (shipped) | seconds |
-| 6 figure | `python ../figure/make_figure.py` | `../figure/fig_07_solver_scaling.{pdf,png}` | seconds |
+| 6 PISM | see [`pism/README.md`](pism/README.md) | `pism/results/` | ~20 min, 32 cores |
+| 7 figure | `python ../figure/make_figure.py` | `../figure/fig_07_solver_cost.{pdf,png}` | seconds |
 
 `pig_diag_bench.py` is the benchmark driver: it initialises only IGM's ice-flow module and calls its solver as a time
 step does (`--mode timing`: compile call plus N cold solves; `--mode reference`: tight float64 solves). `analyze.py`
@@ -92,11 +94,13 @@ provenance.
 ```
 pig_diag_bench.py   benchmark driver
 run_config.yaml     the resolved application configuration the driver takes the solver settings from
-queue_*.txt         the cases (name, mode, basis, precision, grid, extra driver arguments)
+queue_*.txt         the cases (name, mode, basis, precision, grid, extra driver arguments); queue_main.txt ends with the
+                    0.5 km MOLHO solves at probe_batch 1 of Fig. 7a
 run_queue.sh        runs a queue on one GPU, with thermal control
 resample_pig.py     1-km state -> data/<res>/initial.nc
 data/               the four grids and their audit
 analyze.py          cases -> results/scaling.csv (times, iterations, memory, accuracy against the references)
 results/            scaling.csv, reference_stability.csv, cases/<case>/summary*.json and repetitions_raw.csv
 export_figure_data.py   provenance: how ../figure/data was made
+pism/               the comparison with PISM (drivers, front adapter, environments, run.sh, results)
 ```

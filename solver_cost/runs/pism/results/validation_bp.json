@@ -1,0 +1,331 @@
+{
+  "status": "complete",
+  "passed": true,
+  "selected_nz": 5,
+  "benchmark_nz": 2,
+  "band": "native finite-drag stiff band",
+  "front_treatment": "IGM wet-neighbour classification",
+  "solver_policy": "Fixed two-level BP with direct GAMG aggregation; rebuild interpolation each solve",
+  "checks": [
+    {
+      "check": "native-front adapter regression",
+      "relative_vector_rms": {
+        "bar": 0.0,
+        "surf": 0.0
+      },
+      "passed": true
+    },
+    {
+      "check": "floating-shelf traction limit",
+      "relative_vector_rms": 0.0016071245959383721,
+      "passed": true
+    },
+    {
+      "check": "finite band is well behaved",
+      "resolution": "4km",
+      "nz": 2,
+      "band_max_speed_m_yr": 49.01554444388071,
+      "passed": true
+    },
+    {
+      "check": "finite band is well behaved",
+      "resolution": "1km",
+      "nz": 2,
+      "band_max_speed_m_yr": 21.676688814076385,
+      "passed": true
+    },
+    {
+      "check": "finite band is well behaved",
+      "resolution": "4km",
+      "nz": 5,
+      "band_max_speed_m_yr": 49.17462359562304,
+      "passed": true
+    },
+    {
+      "check": "finite band is well behaved",
+      "resolution": "1km",
+      "nz": 5,
+      "band_max_speed_m_yr": 21.998278035835224,
+      "passed": true
+    },
+    {
+      "check": "finite band is well behaved",
+      "resolution": "4km",
+      "nz": 9,
+      "band_max_speed_m_yr": 49.19754096541959,
+      "passed": true
+    },
+    {
+      "check": "finite band is well behaved",
+      "resolution": "1km",
+      "nz": 9,
+      "band_max_speed_m_yr": 22.01700130623516,
+      "passed": true
+    },
+    {
+      "check": "fixed GAMG agrees with existing reference",
+      "resolution": "4km",
+      "relative_vector_rms": {
+        "bar": 9.408885897503398e-07,
+        "surf": 9.373138824497403e-07
+      },
+      "passed": true
+    },
+    {
+      "check": "fixed GAMG agrees with existing reference",
+      "resolution": "1km",
+      "relative_vector_rms": {
+        "bar": 4.794517730414808e-07,
+        "surf": 4.777727681835153e-07
+      },
+      "passed": true
+    }
+  ],
+  "refinements": [
+    {
+      "resolution": "4km",
+      "coarse_nz": 2,
+      "fine_nz": 5,
+      "relative_vector_rms": {
+        "bar": 0.013951575139374383,
+        "surf": 0.012503759433908107
+      },
+      "passed": false
+    },
+    {
+      "resolution": "1km",
+      "coarse_nz": 2,
+      "fine_nz": 5,
+      "relative_vector_rms": {
+        "bar": 0.01722348759409984,
+        "surf": 0.015614333876203342
+      },
+      "passed": false
+    },
+    {
+      "resolution": "4km",
+      "coarse_nz": 5,
+      "fine_nz": 9,
+      "relative_vector_rms": {
+        "bar": 0.0008836486719648272,
+        "surf": 0.0007354019197884793
+      },
+      "passed": true
+    },
+    {
+      "resolution": "1km",
+      "coarse_nz": 5,
+      "fine_nz": 9,
+      "relative_vector_rms": {
+        "bar": 0.001430728394413017,
+        "surf": 0.0012541331910005708
+      },
+      "passed": true
+    }
+  ],
+  "solver_checks": [
+    {
+      "resolution": "4km",
+      "nz": 2,
+      "relative_vector_rms": {
+        "bar": 9.619506609851876e-07,
+        "surf": 9.582909445881693e-07
+      },
+      "passed": true
+    },
+    {
+      "resolution": "1km",
+      "nz": 2,
+      "relative_vector_rms": {
+        "bar": 1.0043024448296006e-08,
+        "surf": 1.0007811564244281e-08
+      },
+      "passed": true
+    },
+    {
+      "resolution": "4km",
+      "nz": 5,
+      "relative_vector_rms": {
+        "bar": 4.168546068258567e-07,
+        "surf": 4.1575958332695083e-07
+      },
+      "passed": true
+    },
+    {
+      "resolution": "1km",
+      "nz": 5,
+      "relative_vector_rms": {
+        "bar": 5.9058842297952404e-09,
+        "surf": 5.890607707316011e-09
+      },
+      "passed": true
+    }
+  ],
+  "cross_model": {
+    "4km_z2": {
+      "all": {
+        "surface": 0.01260689323938369,
+        "bar": 0.014355156664970444
+      },
+      "grounded": {
+        "surface": 0.01491859491626247,
+        "bar": 0.018427182126592417
+      },
+      "floating": {
+        "surface": 0.01075537765007851,
+        "bar": 0.01076676264712078
+      }
+    },
+    "1km_z2": {
+      "all": {
+        "surface": 0.01376341129001794,
+        "bar": 0.0161839671319586
+      },
+      "grounded": {
+        "surface": 0.018000731618180266,
+        "bar": 0.022600096648583222
+      },
+      "floating": {
+        "surface": 0.010163123970923497,
+        "bar": 0.010186323682123154
+      }
+    },
+    "4km_z5": {
+      "all": {
+        "surface": 0.0063761026746555,
+        "bar": 0.0049060389269100085
+      },
+      "grounded": {
+        "surface": 0.008813903240658026,
+        "bar": 0.006051780802577356
+      },
+      "floating": {
+        "surface": 0.003934701211217776,
+        "bar": 0.003948522078216753
+      }
+    },
+    "1km_z5": {
+      "all": {
+        "surface": 0.005124861450745254,
+        "bar": 0.0028912647877554778
+      },
+      "grounded": {
+        "surface": 0.007371830343768327,
+        "bar": 0.00299789909051772
+      },
+      "floating": {
+        "surface": 0.0028797320708788105,
+        "bar": 0.002821396316431014
+      }
+    },
+    "4km_z9": {
+      "all": {
+        "surface": 0.006590791242270168,
+        "bar": 0.005042897997904533
+      },
+      "grounded": {
+        "surface": 0.009112567853610955,
+        "bar": 0.006204151905565679
+      },
+      "floating": {
+        "surface": 0.0040643014118003674,
+        "bar": 0.004075638031288043
+      }
+    },
+    "1km_z9": {
+      "all": {
+        "surface": 0.005743307165736159,
+        "bar": 0.003489674840915077
+      },
+      "grounded": {
+        "surface": 0.00808748132902167,
+        "bar": 0.0035583474560916435
+      },
+      "floating": {
+        "surface": 0.0034978894711644114,
+        "bar": 0.003445316626729288
+      }
+    },
+    "4km_final": {
+      "all": {
+        "surface": 0.012606915118308516,
+        "bar": 0.0143551759287797
+      },
+      "grounded": {
+        "surface": 0.014918597282306706,
+        "bar": 0.018427183922586115
+      },
+      "floating": {
+        "surface": 0.010755418497844185,
+        "bar": 0.010766803600156758
+      }
+    },
+    "2km_final": {
+      "all": {
+        "surface": 0.013077630662351377,
+        "bar": 0.015197266317456548
+      },
+      "grounded": {
+        "surface": 0.016930775087561564,
+        "bar": 0.02091646319863813
+      },
+      "floating": {
+        "surface": 0.009699921513792582,
+        "bar": 0.00971787106907508
+      }
+    },
+    "1km_final": {
+      "all": {
+        "surface": 0.013763198640469806,
+        "bar": 0.0161837803769317
+      },
+      "grounded": {
+        "surface": 0.01800073665868001,
+        "bar": 0.02260009090257235
+      },
+      "floating": {
+        "surface": 0.010162645957605947,
+        "bar": 0.010185846475422996
+      }
+    },
+    "500m_final": {
+      "all": {
+        "surface": 0.013599297116605421,
+        "bar": 0.015845644877984615
+      },
+      "grounded": {
+        "surface": 0.01784269265715258,
+        "bar": 0.02242275474369072
+      },
+      "floating": {
+        "surface": 0.010477994645375343,
+        "bar": 0.010502900071255152
+      }
+    }
+  },
+  "preconditioners": {
+    "4km": "gamg",
+    "2km": "gamg",
+    "1km": "gamg",
+    "500m": "gamg"
+  },
+  "benchmark_vertical_convergence_passed": false,
+  "timing_cases": [
+    {
+      "resolution": "4km",
+      "success": true
+    },
+    {
+      "resolution": "2km",
+      "success": true
+    },
+    {
+      "resolution": "1km",
+      "success": true
+    },
+    {
+      "resolution": "500m",
+      "success": true
+    }
+  ]
+}

@@ -7,6 +7,14 @@
 */runs/cases/
 */runs/results/summary.*
 
+# PISM comparison: restored environments, built adapter, velocity fields
+*/runs/pism/env/
+*/runs/pism/tools-env/
+*/runs/pism/bin/
+*/runs/pism/results/*/*.nc
+*.so
+*_wrap.cxx
+
 # Python
 __pycache__/
 *.pyc

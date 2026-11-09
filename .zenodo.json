@@ -1,12 +1,12 @@
 {
   "title": "Experiments of the IGM v3.3.0 paper on marine- and lake-terminated glaciers (GMD)",
   "upload_type": "software",
-  "description": "Configuration files, user modules, input data, scripts and derived data to reproduce the experiments and figures of the paper \"Extension of IGM to marine- and lake-terminated glaciers (v3.3.0)\" submitted to Geoscientific Model Development: the calving-front verification on the unconfined ice shelf of Albrecht et al. (2011), the MISMIP+ experiments, the applications to Sermeq Kujalleq, Pine Island Glacier and Mendenhall Glacier (reference and neural-network runs), and the cost and scaling of the Newton-CG solver.",
+  "description": "Configuration files, user modules, input data, scripts and derived data to reproduce the experiments and figures of the paper \"Extension of IGM to marine- and lake-terminated glaciers (v3.3.0)\" submitted to Geoscientific Model Development: the calving-front verification on the unconfined ice shelf of Albrecht et al. (2011), the MISMIP+ experiments, the applications to Sermeq Kujalleq, Pine Island Glacier and Mendenhall Glacier (reference and neural-network runs), and the cost of the Newton-CG solver, including its comparison with PISM.",
   "creators": [
     {"name": "Gregov, Thomas", "affiliation": "Université de Lausanne"},
     {"name": "Rosier, Sebastian H. R.", "affiliation": "Universität Zürich"},
-    {"name": "Finley, Brandon D.", "affiliation": "Université de Lausanne"},
     {"name": "Leger, Tancrède P. M.", "affiliation": "Université de Lausanne"},
+    {"name": "Finley, Brandon D.", "affiliation": "Université de Lausanne"},
     {"name": "Vieli, Andreas", "affiliation": "Universität Zürich"},
     {"name": "Jouvet, Guillaume", "affiliation": "Université de Lausanne"}
   ],

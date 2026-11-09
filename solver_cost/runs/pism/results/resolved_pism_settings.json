@@ -1,0 +1,555 @@
+{
+  "ssa_4km": {
+    "settings": {
+      "numbers": {
+        "constants.ice.density": 917.0,
+        "constants.sea_water.density": 1027.0,
+        "constants.standard_gravity": 9.81,
+        "basal_resistance.pseudo_plastic.q": 0.3333333333333333,
+        "basal_resistance.pseudo_plastic.u_threshold": 100.0,
+        "basal_resistance.plastic.regularization": 1.0,
+        "basal_resistance.pseudo_plastic.sliding_scale_factor": 0.0,
+        "stress_balance.ssa.epsilon": 0.0,
+        "stress_balance.ssa.Glen_exponent": 3.0,
+        "stress_balance.blatter.Glen_exponent": 3.0,
+        "stress_balance.ssa.enhancement_factor": 1.0,
+        "stress_balance.blatter.enhancement_factor": 1.0,
+        "stress_balance.blatter.relative_convergence": 0.0001,
+        "flow_law.Schoof_regularizing_length": 0.001,
+        "flow_law.Schoof_regularizing_velocity": 1e-05
+      },
+      "flags": {
+        "basal_resistance.pseudo_plastic.enabled": true,
+        "stress_balance.calving_front_stress_bc": true,
+        "stress_balance.ssa.dirichlet_bc": true,
+        "stress_balance.ssa.compute_surface_gradient_inward": false
+      },
+      "strings": {
+        "stress_balance.ssa.flow_law": "arr",
+        "stress_balance.blatter.flow_law": "arr",
+        "stress_balance.ssa.method": "fem"
+      },
+      "petsc": {
+        "snes_rtol": 1e-06,
+        "snes_atol": 1e-12,
+        "snes_stol": 1e-12,
+        "snes_max_it": 200,
+        "ksp_rtol": 0.0001,
+        "ksp_max_it": 2000,
+        "ksp_type": "gmres",
+        "snes_converged_reason": null,
+        "ksp_converged_reason": null,
+        "pc_type": "gamg",
+        "pc_gamg_type": "agg"
+      }
+    },
+    "additional_petsc_arguments": [],
+    "band_bc": "stationary",
+    "geometry_mode": "ice-base",
+    "front_treatment": "native PISM SSAFEM marine-front traction",
+    "allocated_velocity_dofs": 33512,
+    "vertical_levels": 1,
+    "environment": {
+      "host": "node55.octopoda",
+      "python": "3.11.18",
+      "pism_version": "see environment lock",
+      "mpi": "Open MPI v5.0.10, package: Open MPI conda@ec2df9518df4 Distribution, ident: 5.0.10, repo rev: v5.0.10, Feb 23, 2026\u0000",
+      "executable": "/work/tgregov/igm-32/igm-pism-comp/env/bin/python",
+      "argv": [
+        "/work/tgregov/igm-32/igm-pism-comp/scripts/pism_diag.py"
+      ],
+      "thread_env": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1"
+      }
+    }
+  },
+  "ssa_2km": {
+    "settings": {
+      "numbers": {
+        "constants.ice.density": 917.0,
+        "constants.sea_water.density": 1027.0,
+        "constants.standard_gravity": 9.81,
+        "basal_resistance.pseudo_plastic.q": 0.3333333333333333,
+        "basal_resistance.pseudo_plastic.u_threshold": 100.0,
+        "basal_resistance.plastic.regularization": 1.0,
+        "basal_resistance.pseudo_plastic.sliding_scale_factor": 0.0,
+        "stress_balance.ssa.epsilon": 0.0,
+        "stress_balance.ssa.Glen_exponent": 3.0,
+        "stress_balance.blatter.Glen_exponent": 3.0,
+        "stress_balance.ssa.enhancement_factor": 1.0,
+        "stress_balance.blatter.enhancement_factor": 1.0,
+        "stress_balance.blatter.relative_convergence": 0.0001,
+        "flow_law.Schoof_regularizing_length": 0.001,
+        "flow_law.Schoof_regularizing_velocity": 1e-05
+      },
+      "flags": {
+        "basal_resistance.pseudo_plastic.enabled": true,
+        "stress_balance.calving_front_stress_bc": true,
+        "stress_balance.ssa.dirichlet_bc": true,
+        "stress_balance.ssa.compute_surface_gradient_inward": false
+      },
+      "strings": {
+        "stress_balance.ssa.flow_law": "arr",
+        "stress_balance.blatter.flow_law": "arr",
+        "stress_balance.ssa.method": "fem"
+      },
+      "petsc": {
+        "snes_rtol": 1e-06,
+        "snes_atol": 1e-12,
+        "snes_stol": 1e-12,
+        "snes_max_it": 200,
+        "ksp_rtol": 0.0001,
+        "ksp_max_it": 2000,
+        "ksp_type": "gmres",
+        "snes_converged_reason": null,
+        "ksp_converged_reason": null,
+        "pc_type": "gamg",
+        "pc_gamg_type": "agg"
+      }
+    },
+    "additional_petsc_arguments": [],
+    "band_bc": "stationary",
+    "geometry_mode": "ice-base",
+    "front_treatment": "native PISM SSAFEM marine-front traction",
+    "allocated_velocity_dofs": 133010,
+    "vertical_levels": 1,
+    "environment": {
+      "host": "node55.octopoda",
+      "python": "3.11.18",
+      "pism_version": "see environment lock",
+      "mpi": "Open MPI v5.0.10, package: Open MPI conda@ec2df9518df4 Distribution, ident: 5.0.10, repo rev: v5.0.10, Feb 23, 2026\u0000",
+      "executable": "/work/tgregov/igm-32/igm-pism-comp/env/bin/python",
+      "argv": [
+        "/work/tgregov/igm-32/igm-pism-comp/scripts/pism_diag.py"
+      ],
+      "thread_env": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1"
+      }
+    }
+  },
+  "ssa_1km": {
+    "settings": {
+      "numbers": {
+        "constants.ice.density": 917.0,
+        "constants.sea_water.density": 1027.0,
+        "constants.standard_gravity": 9.81,
+        "basal_resistance.pseudo_plastic.q": 0.3333333333333333,
+        "basal_resistance.pseudo_plastic.u_threshold": 100.0,
+        "basal_resistance.plastic.regularization": 1.0,
+        "basal_resistance.pseudo_plastic.sliding_scale_factor": 0.0,
+        "stress_balance.ssa.epsilon": 0.0,
+        "stress_balance.ssa.Glen_exponent": 3.0,
+        "stress_balance.blatter.Glen_exponent": 3.0,
+        "stress_balance.ssa.enhancement_factor": 1.0,
+        "stress_balance.blatter.enhancement_factor": 1.0,
+        "stress_balance.blatter.relative_convergence": 0.0001,
+        "flow_law.Schoof_regularizing_length": 0.001,
+        "flow_law.Schoof_regularizing_velocity": 1e-05
+      },
+      "flags": {
+        "basal_resistance.pseudo_plastic.enabled": true,
+        "stress_balance.calving_front_stress_bc": true,
+        "stress_balance.ssa.dirichlet_bc": true,
+        "stress_balance.ssa.compute_surface_gradient_inward": false
+      },
+      "strings": {
+        "stress_balance.ssa.flow_law": "arr",
+        "stress_balance.blatter.flow_law": "arr",
+        "stress_balance.ssa.method": "fem"
+      },
+      "petsc": {
+        "snes_rtol": 1e-06,
+        "snes_atol": 1e-12,
+        "snes_stol": 1e-12,
+        "snes_max_it": 200,
+        "ksp_rtol": 0.0001,
+        "ksp_max_it": 2000,
+        "ksp_type": "gmres",
+        "snes_converged_reason": null,
+        "ksp_converged_reason": null,
+        "pc_type": "gamg",
+        "pc_gamg_type": "agg"
+      }
+    },
+    "additional_petsc_arguments": [],
+    "band_bc": "stationary",
+    "geometry_mode": "ice-base",
+    "front_treatment": "native PISM SSAFEM marine-front traction",
+    "allocated_velocity_dofs": 529032,
+    "vertical_levels": 1,
+    "environment": {
+      "host": "node55.octopoda",
+      "python": "3.11.18",
+      "pism_version": "see environment lock",
+      "mpi": "Open MPI v5.0.10, package: Open MPI conda@ec2df9518df4 Distribution, ident: 5.0.10, repo rev: v5.0.10, Feb 23, 2026\u0000",
+      "executable": "/work/tgregov/igm-32/igm-pism-comp/env/bin/python",
+      "argv": [
+        "/work/tgregov/igm-32/igm-pism-comp/scripts/pism_diag.py"
+      ],
+      "thread_env": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1"
+      }
+    }
+  },
+  "ssa_500m": {
+    "settings": {
+      "numbers": {
+        "constants.ice.density": 917.0,
+        "constants.sea_water.density": 1027.0,
+        "constants.standard_gravity": 9.81,
+        "basal_resistance.pseudo_plastic.q": 0.3333333333333333,
+        "basal_resistance.pseudo_plastic.u_threshold": 100.0,
+        "basal_resistance.plastic.regularization": 1.0,
+        "basal_resistance.pseudo_plastic.sliding_scale_factor": 0.0,
+        "stress_balance.ssa.epsilon": 0.0,
+        "stress_balance.ssa.Glen_exponent": 3.0,
+        "stress_balance.blatter.Glen_exponent": 3.0,
+        "stress_balance.ssa.enhancement_factor": 1.0,
+        "stress_balance.blatter.enhancement_factor": 1.0,
+        "stress_balance.blatter.relative_convergence": 0.0001,
+        "flow_law.Schoof_regularizing_length": 0.001,
+        "flow_law.Schoof_regularizing_velocity": 1e-05
+      },
+      "flags": {
+        "basal_resistance.pseudo_plastic.enabled": true,
+        "stress_balance.calving_front_stress_bc": true,
+        "stress_balance.ssa.dirichlet_bc": true,
+        "stress_balance.ssa.compute_surface_gradient_inward": false
+      },
+      "strings": {
+        "stress_balance.ssa.flow_law": "arr",
+        "stress_balance.blatter.flow_law": "arr",
+        "stress_balance.ssa.method": "fem"
+      },
+      "petsc": {
+        "snes_rtol": 1e-06,
+        "snes_atol": 1e-12,
+        "snes_stol": 1e-12,
+        "snes_max_it": 200,
+        "ksp_rtol": 0.0001,
+        "ksp_max_it": 2000,
+        "ksp_type": "gmres",
+        "snes_converged_reason": null,
+        "ksp_converged_reason": null,
+        "pc_type": "gamg",
+        "pc_gamg_type": "agg"
+      }
+    },
+    "additional_petsc_arguments": [
+      "-pc_gamg_reuse_interpolation",
+      "false"
+    ],
+    "band_bc": "stationary",
+    "geometry_mode": "ice-base",
+    "front_treatment": "native PISM SSAFEM marine-front traction",
+    "allocated_velocity_dofs": 2115746,
+    "vertical_levels": 1,
+    "environment": {
+      "host": "node55.octopoda",
+      "python": "3.11.18",
+      "pism_version": "see environment lock",
+      "mpi": "Open MPI v5.0.10, package: Open MPI conda@ec2df9518df4 Distribution, ident: 5.0.10, repo rev: v5.0.10, Feb 23, 2026\u0000",
+      "executable": "/work/tgregov/igm-32/igm-pism-comp/env/bin/python",
+      "argv": [
+        "/work/tgregov/igm-32/igm-pism-comp/scripts/pism_diag.py",
+        "-pc_gamg_reuse_interpolation",
+        "false"
+      ],
+      "thread_env": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1"
+      }
+    }
+  },
+  "bp_4km": {
+    "settings": {
+      "numbers": {
+        "constants.ice.density": 917.0,
+        "constants.sea_water.density": 1027.0,
+        "constants.standard_gravity": 9.81,
+        "basal_resistance.pseudo_plastic.q": 0.3333333333333333,
+        "basal_resistance.pseudo_plastic.u_threshold": 100.0,
+        "basal_resistance.plastic.regularization": 1.0,
+        "basal_resistance.pseudo_plastic.sliding_scale_factor": 0.0,
+        "stress_balance.ssa.epsilon": 0.0,
+        "stress_balance.ssa.Glen_exponent": 3.0,
+        "stress_balance.blatter.Glen_exponent": 3.0,
+        "stress_balance.ssa.enhancement_factor": 1.0,
+        "stress_balance.blatter.enhancement_factor": 1.0,
+        "stress_balance.blatter.relative_convergence": 0.0001,
+        "flow_law.Schoof_regularizing_length": 0.001,
+        "flow_law.Schoof_regularizing_velocity": 1e-05
+      },
+      "flags": {
+        "basal_resistance.pseudo_plastic.enabled": true,
+        "stress_balance.calving_front_stress_bc": true,
+        "stress_balance.ssa.dirichlet_bc": false,
+        "stress_balance.ssa.compute_surface_gradient_inward": false
+      },
+      "strings": {
+        "stress_balance.ssa.flow_law": "arr",
+        "stress_balance.blatter.flow_law": "arr",
+        "stress_balance.ssa.method": "fem"
+      },
+      "petsc": {
+        "bp_snes_rtol": 1e-06,
+        "bp_snes_atol": 1e-12,
+        "bp_snes_stol": 1e-12,
+        "bp_snes_max_it": 200,
+        "bp_ksp_rtol": 0.0001,
+        "bp_ksp_max_it": 2000,
+        "bp_ksp_type": "gmres",
+        "bp_snes_converged_reason": null,
+        "bp_ksp_converged_reason": null,
+        "bp_pc_type": "gamg",
+        "bp_pc_gamg_type": "agg"
+      }
+    },
+    "additional_petsc_arguments": [
+      "-bp_pc_gamg_reuse_interpolation",
+      "false"
+    ],
+    "band_bc": "native",
+    "geometry_mode": "ice-base",
+    "front_treatment": "igm-wet",
+    "allocated_velocity_dofs": 67024,
+    "vertical_levels": 2,
+    "environment": {
+      "host": "node55.octopoda",
+      "python": "3.11.18",
+      "pism_version": "see environment lock",
+      "mpi": "Open MPI v5.0.10, package: Open MPI conda@ec2df9518df4 Distribution, ident: 5.0.10, repo rev: v5.0.10, Feb 23, 2026\u0000",
+      "executable": "/work/tgregov/igm-32/igm-pism-comp/env/bin/python",
+      "argv": [
+        "/work/tgregov/igm-32/igm-pism-comp/scripts/bp_diag_matched.py",
+        "-bp_pc_gamg_reuse_interpolation",
+        "false"
+      ],
+      "thread_env": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1"
+      }
+    }
+  },
+  "bp_2km": {
+    "settings": {
+      "numbers": {
+        "constants.ice.density": 917.0,
+        "constants.sea_water.density": 1027.0,
+        "constants.standard_gravity": 9.81,
+        "basal_resistance.pseudo_plastic.q": 0.3333333333333333,
+        "basal_resistance.pseudo_plastic.u_threshold": 100.0,
+        "basal_resistance.plastic.regularization": 1.0,
+        "basal_resistance.pseudo_plastic.sliding_scale_factor": 0.0,
+        "stress_balance.ssa.epsilon": 0.0,
+        "stress_balance.ssa.Glen_exponent": 3.0,
+        "stress_balance.blatter.Glen_exponent": 3.0,
+        "stress_balance.ssa.enhancement_factor": 1.0,
+        "stress_balance.blatter.enhancement_factor": 1.0,
+        "stress_balance.blatter.relative_convergence": 0.0001,
+        "flow_law.Schoof_regularizing_length": 0.001,
+        "flow_law.Schoof_regularizing_velocity": 1e-05
+      },
+      "flags": {
+        "basal_resistance.pseudo_plastic.enabled": true,
+        "stress_balance.calving_front_stress_bc": true,
+        "stress_balance.ssa.dirichlet_bc": false,
+        "stress_balance.ssa.compute_surface_gradient_inward": false
+      },
+      "strings": {
+        "stress_balance.ssa.flow_law": "arr",
+        "stress_balance.blatter.flow_law": "arr",
+        "stress_balance.ssa.method": "fem"
+      },
+      "petsc": {
+        "bp_snes_rtol": 1e-06,
+        "bp_snes_atol": 1e-12,
+        "bp_snes_stol": 1e-12,
+        "bp_snes_max_it": 200,
+        "bp_ksp_rtol": 0.0001,
+        "bp_ksp_max_it": 2000,
+        "bp_ksp_type": "gmres",
+        "bp_snes_converged_reason": null,
+        "bp_ksp_converged_reason": null,
+        "bp_pc_type": "gamg",
+        "bp_pc_gamg_type": "agg"
+      }
+    },
+    "additional_petsc_arguments": [
+      "-bp_pc_gamg_reuse_interpolation",
+      "false"
+    ],
+    "band_bc": "native",
+    "geometry_mode": "ice-base",
+    "front_treatment": "igm-wet",
+    "allocated_velocity_dofs": 266020,
+    "vertical_levels": 2,
+    "environment": {
+      "host": "node55.octopoda",
+      "python": "3.11.18",
+      "pism_version": "see environment lock",
+      "mpi": "Open MPI v5.0.10, package: Open MPI conda@ec2df9518df4 Distribution, ident: 5.0.10, repo rev: v5.0.10, Feb 23, 2026\u0000",
+      "executable": "/work/tgregov/igm-32/igm-pism-comp/env/bin/python",
+      "argv": [
+        "/work/tgregov/igm-32/igm-pism-comp/scripts/bp_diag_matched.py",
+        "-bp_pc_gamg_reuse_interpolation",
+        "false"
+      ],
+      "thread_env": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1"
+      }
+    }
+  },
+  "bp_1km": {
+    "settings": {
+      "numbers": {
+        "constants.ice.density": 917.0,
+        "constants.sea_water.density": 1027.0,
+        "constants.standard_gravity": 9.81,
+        "basal_resistance.pseudo_plastic.q": 0.3333333333333333,
+        "basal_resistance.pseudo_plastic.u_threshold": 100.0,
+        "basal_resistance.plastic.regularization": 1.0,
+        "basal_resistance.pseudo_plastic.sliding_scale_factor": 0.0,
+        "stress_balance.ssa.epsilon": 0.0,
+        "stress_balance.ssa.Glen_exponent": 3.0,
+        "stress_balance.blatter.Glen_exponent": 3.0,
+        "stress_balance.ssa.enhancement_factor": 1.0,
+        "stress_balance.blatter.enhancement_factor": 1.0,
+        "stress_balance.blatter.relative_convergence": 0.0001,
+        "flow_law.Schoof_regularizing_length": 0.001,
+        "flow_law.Schoof_regularizing_velocity": 1e-05
+      },
+      "flags": {
+        "basal_resistance.pseudo_plastic.enabled": true,
+        "stress_balance.calving_front_stress_bc": true,
+        "stress_balance.ssa.dirichlet_bc": false,
+        "stress_balance.ssa.compute_surface_gradient_inward": false
+      },
+      "strings": {
+        "stress_balance.ssa.flow_law": "arr",
+        "stress_balance.blatter.flow_law": "arr",
+        "stress_balance.ssa.method": "fem"
+      },
+      "petsc": {
+        "bp_snes_rtol": 1e-06,
+        "bp_snes_atol": 1e-12,
+        "bp_snes_stol": 1e-12,
+        "bp_snes_max_it": 200,
+        "bp_ksp_rtol": 0.0001,
+        "bp_ksp_max_it": 2000,
+        "bp_ksp_type": "gmres",
+        "bp_snes_converged_reason": null,
+        "bp_ksp_converged_reason": null,
+        "bp_pc_type": "gamg",
+        "bp_pc_gamg_type": "agg"
+      }
+    },
+    "additional_petsc_arguments": [
+      "-bp_pc_gamg_reuse_interpolation",
+      "false"
+    ],
+    "band_bc": "native",
+    "geometry_mode": "ice-base",
+    "front_treatment": "igm-wet",
+    "allocated_velocity_dofs": 1058064,
+    "vertical_levels": 2,
+    "environment": {
+      "host": "node55.octopoda",
+      "python": "3.11.18",
+      "pism_version": "see environment lock",
+      "mpi": "Open MPI v5.0.10, package: Open MPI conda@ec2df9518df4 Distribution, ident: 5.0.10, repo rev: v5.0.10, Feb 23, 2026\u0000",
+      "executable": "/work/tgregov/igm-32/igm-pism-comp/env/bin/python",
+      "argv": [
+        "/work/tgregov/igm-32/igm-pism-comp/scripts/bp_diag_matched.py",
+        "-bp_pc_gamg_reuse_interpolation",
+        "false"
+      ],
+      "thread_env": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1"
+      }
+    }
+  },
+  "bp_500m": {
+    "settings": {
+      "numbers": {
+        "constants.ice.density": 917.0,
+        "constants.sea_water.density": 1027.0,
+        "constants.standard_gravity": 9.81,
+        "basal_resistance.pseudo_plastic.q": 0.3333333333333333,
+        "basal_resistance.pseudo_plastic.u_threshold": 100.0,
+        "basal_resistance.plastic.regularization": 1.0,
+        "basal_resistance.pseudo_plastic.sliding_scale_factor": 0.0,
+        "stress_balance.ssa.epsilon": 0.0,
+        "stress_balance.ssa.Glen_exponent": 3.0,
+        "stress_balance.blatter.Glen_exponent": 3.0,
+        "stress_balance.ssa.enhancement_factor": 1.0,
+        "stress_balance.blatter.enhancement_factor": 1.0,
+        "stress_balance.blatter.relative_convergence": 0.0001,
+        "flow_law.Schoof_regularizing_length": 0.001,
+        "flow_law.Schoof_regularizing_velocity": 1e-05
+      },
+      "flags": {
+        "basal_resistance.pseudo_plastic.enabled": true,
+        "stress_balance.calving_front_stress_bc": true,
+        "stress_balance.ssa.dirichlet_bc": false,
+        "stress_balance.ssa.compute_surface_gradient_inward": false
+      },
+      "strings": {
+        "stress_balance.ssa.flow_law": "arr",
+        "stress_balance.blatter.flow_law": "arr",
+        "stress_balance.ssa.method": "fem"
+      },
+      "petsc": {
+        "bp_snes_rtol": 1e-06,
+        "bp_snes_atol": 1e-12,
+        "bp_snes_stol": 1e-12,
+        "bp_snes_max_it": 200,
+        "bp_ksp_rtol": 0.0001,
+        "bp_ksp_max_it": 2000,
+        "bp_ksp_type": "gmres",
+        "bp_snes_converged_reason": null,
+        "bp_ksp_converged_reason": null,
+        "bp_pc_type": "gamg",
+        "bp_pc_gamg_type": "agg"
+      }
+    },
+    "additional_petsc_arguments": [
+      "-bp_pc_gamg_reuse_interpolation",
+      "false"
+    ],
+    "band_bc": "native",
+    "geometry_mode": "ice-base",
+    "front_treatment": "igm-wet",
+    "allocated_velocity_dofs": 4231492,
+    "vertical_levels": 2,
+    "environment": {
+      "host": "node55.octopoda",
+      "python": "3.11.18",
+      "pism_version": "see environment lock",
+      "mpi": "Open MPI v5.0.10, package: Open MPI conda@ec2df9518df4 Distribution, ident: 5.0.10, repo rev: v5.0.10, Feb 23, 2026\u0000",
+      "executable": "/work/tgregov/igm-32/igm-pism-comp/env/bin/python",
+      "argv": [
+        "/work/tgregov/igm-32/igm-pism-comp/scripts/bp_diag_matched.py",
+        "-bp_pc_gamg_reuse_interpolation",
+        "false"
+      ],
+      "thread_env": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1"
+      }
+    }
+  }
+}

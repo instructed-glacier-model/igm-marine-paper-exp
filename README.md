@@ -2,7 +2,7 @@
 
 Material to reproduce the experiments and figures of the paper
 
-> Gregov, T., Rosier, S. H. R., Finley, B. D., Leger, T. P. M., Vieli, A., and Jouvet, G.: Extension of IGM to marine-
+> Gregov, T., Rosier, S. H. R., Leger, T. P. M., Finley, B. D., Vieli, A., and Jouvet, G.: Extension of IGM to marine-
 > and lake-terminated glaciers (v3.3.0), submitted to *Geoscientific Model Development*.
 
 IGM: <https://github.com/instructed-glacier-model/igm> — documentation: <https://igm-model.org/>
@@ -18,7 +18,7 @@ One folder per experiment, each with `runs/` (to re-run it: configurations, user
 | Calving-front motion on an unconfined ice shelf (Albrecht et al., 2011) | Sect. 4.1, Fig. 2 | [`unconfined_ice_shelf/runs/README.md`](unconfined_ice_shelf/runs/README.md) |
 | Grounding-line migration, MISMIP+ (Asay-Davis et al., 2016) | Sect. 4.2, Fig. 3 | [`mismip_plus/runs/README.md`](mismip_plus/runs/README.md) |
 | Three glaciers: Sermeq Kujalleq, Pine Island Glacier, Mendenhall Glacier | Sect. 5, Figs. 4–6 and 8, Tables 1, 2, C1 | [`glaciers/runs/README.md`](glaciers/runs/README.md) |
-| Cost and scaling of the Newton–CG solver | Sect. 5.4, Fig. 7 | [`solver_scaling/runs/README.md`](solver_scaling/runs/README.md) |
+| Cost of the reference solver: scaling, and comparison with PISM | Sect. 5.4, App. D, Fig. 7, Table D1 | [`solver_cost/runs/README.md`](solver_cost/runs/README.md) |
 
 ## Redraw the figures
 
@@ -27,7 +27,7 @@ pip install -r requirements.txt       # numpy, pandas, matplotlib, xarray, netCD
 python unconfined_ice_shelf/figure/make_figure.py
 python mismip_plus/figure/make_figure.py
 python glaciers/figure/make_figures.py
-python solver_scaling/figure/make_figure.py
+python solver_cost/figure/make_figure.py
 ```
 
 Each script writes its figure next to itself, under the file name of the manuscript (`fig_02_…pdf`, …); the shipped
@@ -42,7 +42,8 @@ The `dev` branch of IGM at commit `b15cdce2`:
 pip install git+https://github.com/instructed-glacier-model/igm.git@b15cdce2
 ```
 
-All runs used one NVIDIA RTX 4090 (24 GiB) per run, Python 3.10 and TensorFlow 2.17.
+All IGM runs used one NVIDIA RTX 4090 (24 GiB) per run, Python 3.10 and TensorFlow 2.17; the PISM runs of the
+comparison used 32 cores of a dual Intel Xeon E5-2683 v4 node (`solver_cost/runs/pism/README.md`).
 
 ## License
 

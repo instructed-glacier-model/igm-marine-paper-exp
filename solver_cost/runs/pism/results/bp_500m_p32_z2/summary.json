@@ -1,0 +1,169 @@
+{
+  "model": "bp",
+  "nz": 2,
+  "ranks": 32,
+  "grid_shape": [
+    1129,
+    937
+  ],
+  "spacing_m": 500.0,
+  "allocated_velocity_dofs": 4231492,
+  "initial": "/work/tgregov/igm-32/igm-marine-paper-exp/solver_scaling/runs/data/500m/initial.nc",
+  "input_sha256": "e9954baca6d720b1ed27776a80c66df7fde959ac5b78a17bc473eb20518fbdd5",
+  "driver_sha256": "0efb8f926c8aa871d07157d5607f4d9f82d27f6860df5cf289e20cabb60fbcfe",
+  "bp_extension_sha256": "74159de271ea6114c9ae931ee7c5a65810e50a867d033424b1f56cd10fd802f7",
+  "bp_boundary_implementation": "C++ subclass: stationary band and IGM wet-cell marine-front classification",
+  "front_treatment": "igm-wet",
+  "bp_preconditioner": "gamg",
+  "check": null,
+  "band_bc": "native",
+  "geometry_mode": "ice-base",
+  "year_seconds": 31556925.9747,
+  "setup_s": 1.4007631577551365,
+  "rows": [
+    {
+      "phase": "initialization",
+      "rep": 0,
+      "wall_s": 100.271573751,
+      "construct_s": 0.19972647726535797,
+      "converged": true,
+      "errors": [],
+      "peak_rank_rss_bytes": 582389760,
+      "sum_rank_peak_rss_bytes": 17901895680,
+      "finite": true,
+      "max_speed_m_yr": 4435.085865960171,
+      "newton_iterations": 13,
+      "linear_iterations": 686
+    },
+    {
+      "phase": "cold",
+      "rep": 1,
+      "wall_s": 100.00984369499999,
+      "construct_s": 0.8258011713624,
+      "converged": true,
+      "errors": [],
+      "peak_rank_rss_bytes": 685260800,
+      "sum_rank_peak_rss_bytes": 18280660992,
+      "finite": true,
+      "max_speed_m_yr": 4435.085865960171,
+      "newton_iterations": 13,
+      "linear_iterations": 686
+    },
+    {
+      "phase": "cold",
+      "rep": 2,
+      "wall_s": 100.069712202,
+      "construct_s": 0.8974684737622738,
+      "converged": true,
+      "errors": [],
+      "peak_rank_rss_bytes": 686780416,
+      "sum_rank_peak_rss_bytes": 18373738496,
+      "finite": true,
+      "max_speed_m_yr": 4435.085865960171,
+      "newton_iterations": 13,
+      "linear_iterations": 686
+    },
+    {
+      "phase": "cold",
+      "rep": 3,
+      "wall_s": 100.13112559000001,
+      "construct_s": 0.8854884281754494,
+      "converged": true,
+      "errors": [],
+      "peak_rank_rss_bytes": 686780416,
+      "sum_rank_peak_rss_bytes": 18390343680,
+      "finite": true,
+      "max_speed_m_yr": 4435.085865960171,
+      "newton_iterations": 13,
+      "linear_iterations": 686
+    },
+    {
+      "phase": "cold",
+      "rep": 4,
+      "wall_s": 99.61797416600001,
+      "construct_s": 0.8704011961817741,
+      "converged": true,
+      "errors": [],
+      "peak_rank_rss_bytes": 688152576,
+      "sum_rank_peak_rss_bytes": 18422280192,
+      "finite": true,
+      "max_speed_m_yr": 4435.085865960171,
+      "newton_iterations": 13,
+      "linear_iterations": 686
+    },
+    {
+      "phase": "cold",
+      "rep": 5,
+      "wall_s": 99.73190795399995,
+      "construct_s": 0.7739425897598267,
+      "converged": true,
+      "errors": [],
+      "peak_rank_rss_bytes": 705081344,
+      "sum_rank_peak_rss_bytes": 18472214528,
+      "finite": true,
+      "max_speed_m_yr": 4435.085865960171,
+      "newton_iterations": 13,
+      "linear_iterations": 686
+    }
+  ],
+  "settings": {
+    "numbers": {
+      "constants.ice.density": 917.0,
+      "constants.sea_water.density": 1027.0,
+      "constants.standard_gravity": 9.81,
+      "basal_resistance.pseudo_plastic.q": 0.3333333333333333,
+      "basal_resistance.pseudo_plastic.u_threshold": 100.0,
+      "basal_resistance.plastic.regularization": 1.0,
+      "basal_resistance.pseudo_plastic.sliding_scale_factor": 0.0,
+      "stress_balance.ssa.epsilon": 0.0,
+      "stress_balance.ssa.Glen_exponent": 3.0,
+      "stress_balance.blatter.Glen_exponent": 3.0,
+      "stress_balance.ssa.enhancement_factor": 1.0,
+      "stress_balance.blatter.enhancement_factor": 1.0,
+      "stress_balance.blatter.relative_convergence": 0.0001,
+      "flow_law.Schoof_regularizing_length": 0.001,
+      "flow_law.Schoof_regularizing_velocity": 1e-05
+    },
+    "flags": {
+      "basal_resistance.pseudo_plastic.enabled": true,
+      "stress_balance.calving_front_stress_bc": true,
+      "stress_balance.ssa.dirichlet_bc": false,
+      "stress_balance.ssa.compute_surface_gradient_inward": false
+    },
+    "strings": {
+      "stress_balance.ssa.flow_law": "arr",
+      "stress_balance.blatter.flow_law": "arr",
+      "stress_balance.ssa.method": "fem"
+    },
+    "petsc": {
+      "bp_snes_rtol": 1e-06,
+      "bp_snes_atol": 1e-12,
+      "bp_snes_stol": 1e-12,
+      "bp_snes_max_it": 200,
+      "bp_ksp_rtol": 0.0001,
+      "bp_ksp_max_it": 2000,
+      "bp_ksp_type": "gmres",
+      "bp_snes_converged_reason": null,
+      "bp_ksp_converged_reason": null,
+      "bp_pc_type": "gamg",
+      "bp_pc_gamg_type": "agg"
+    }
+  },
+  "environment": {
+    "host": "node55.octopoda",
+    "python": "3.11.18",
+    "pism_version": "see environment lock",
+    "mpi": "Open MPI v5.0.10, package: Open MPI conda@ec2df9518df4 Distribution, ident: 5.0.10, repo rev: v5.0.10, Feb 23, 2026\u0000",
+    "executable": "/work/tgregov/igm-32/igm-pism-comp/env/bin/python",
+    "argv": [
+      "/work/tgregov/igm-32/igm-pism-comp/scripts/bp_diag_matched.py",
+      "-bp_pc_gamg_reuse_interpolation",
+      "false"
+    ],
+    "thread_env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1"
+    }
+  }
+}

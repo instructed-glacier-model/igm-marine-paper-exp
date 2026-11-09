@@ -1,4 +1,5 @@
-# main matrix: paper settings (MOLHO probe_batch 9 from the run config; SSA 0), compile + 5 cold solves
+# main matrix: paper settings (MOLHO probe_batch 9 from the run config; SSA 0), compile + 5 cold solves;
+# the last two lines are the 0.5 km MOLHO solves of Fig. 7a, with probe_batch 1 (probe_batch 9 runs out of memory)
 4km_molho_f32 timing molho single 4km --reps 5
 4km_ssa_f32 timing ssa single 4km --reps 5
 2km_molho_f32 timing molho single 2km --reps 5
@@ -15,3 +16,5 @@
 1km_ssa_f64 timing ssa double 1km --reps 5
 500m_molho_f64 timing molho double 500m --reps 5
 500m_ssa_f64 timing ssa double 500m --reps 5
+500m_molho_f32_pb1 timing molho single 500m --reps 5 --probe-batch 1
+500m_molho_f64_pb1 timing molho double 500m --reps 5 --probe-batch 1

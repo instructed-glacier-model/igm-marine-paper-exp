@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "resolution": "4km",
+      "relative_vector_rms_change": 4.724187219200768e-12,
+      "passed": true,
+      "igm_reference_relative_vector_rms": 0.04849916565775883
+    },
+    {
+      "resolution": "1km",
+      "relative_vector_rms_change": 2.779335325054333e-07,
+      "passed": true,
+      "igm_reference_relative_vector_rms": 0.00924344556416486
+    }
+  ]
+}

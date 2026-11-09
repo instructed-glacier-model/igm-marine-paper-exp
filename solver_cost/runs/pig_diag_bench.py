@@ -115,6 +115,12 @@ def build_cfg(args):
     from omegaconf import OmegaConf
 
     cfg = OmegaConf.load(args.config)
+    # Fill in the options added to IGM since the paper configuration was resolved, from the installed IGM;
+    # every explicit setting of the configuration keeps precedence.
+    import igm
+
+    defaults = OmegaConf.load(Path(igm.__file__).parent / "conf/processes/iceflow.yaml").iceflow
+    cfg.processes.iceflow = OmegaConf.merge(defaults, cfg.processes.iceflow)
     ice = cfg.processes.iceflow
     uni = ice.unified
     cg = uni.cg_newton

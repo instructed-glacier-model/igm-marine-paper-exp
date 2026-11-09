@@ -1,0 +1,12 @@
+[
+  {
+    "check": "sliding",
+    "relative_error": 6.15270935151729e-13,
+    "passed": true
+  },
+  {
+    "check": "shelf",
+    "relative_error": 2.5020688790077115e-07,
+    "passed": true
+  }
+]

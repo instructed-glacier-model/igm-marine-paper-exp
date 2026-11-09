@@ -1,0 +1,13 @@
+{
+  "rate_factor_max_relative_error": 1.0103029524088925e-14,
+  "geometry_mode": "ice-base",
+  "raised_floating_bed_nodes": 6537,
+  "surface_max_abs_difference_m": 9.199846340379736e-05,
+  "ice_nodes": 147390,
+  "band_nodes": 5298,
+  "igm_grounded_nodes": 140853,
+  "pism_grounded_nodes": 140853,
+  "grounded_mask_disagreements": 0,
+  "x_max_abs_difference_m": 0.0,
+  "y_max_abs_difference_m": 0.0
+}
