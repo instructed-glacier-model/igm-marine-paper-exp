@@ -1,7 +1,7 @@
-# Three glaciers figures (Figs. 4, 5, 6, 8) and tables (1, 2, C1)
+# Three glaciers figures (Figs. 4, 5, 6, 8, C1) and tables (1, 2, C1)
 
 ```bash
-python make_figures.py     # ~2 min; needs numpy, pandas, matplotlib, xarray, netCDF4, cmcrameri
+python make_figures.py     # ~2 min; needs numpy, scipy, pandas, matplotlib, xarray, netCDF4, cmcrameri
 ```
 
 | Paper | Script | Output |
@@ -10,6 +10,7 @@ python make_figures.py     # ~2 min; needs numpy, pandas, matplotlib, xarray, ne
 | Fig. 5 | `fig_gmd_performance.py` | `fig_05_accuracy_and_cost.{pdf,png}`; also rewrites `data/summary.csv` |
 | Fig. 6 | `fig_gmd_speed_difference.py` (`--abs` also draws the absolute difference, not in the paper) | `fig_06_speed_difference.{pdf,png}` |
 | Fig. 8 | `fig_gmd_geometry_response.py` | `fig_08_geometry_response.{pdf,png}` |
+| Fig. C1 | `fig_gmd_profiles.py` (geometry and speed along the flowlines of Fig. 4) | `fig_C1_flowline_profiles.{pdf,png}` |
 | Tables 1 and 2 | `data/summary.csv`, `data/errors.csv`, `data/costs.csv`, `data/timeseries.csv` | — |
 | Table C1 | `../runs/configs/<run>.yaml`, `data/costs.csv` (initial training and its stop) | — |
 

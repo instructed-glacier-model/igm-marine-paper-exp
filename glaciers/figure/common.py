@@ -26,7 +26,7 @@ DATA = os.path.join(HERE, "data")
 FIGURES = HERE  # the figures are written next to the scripts, under the file names of the manuscript
 
 REF = os.environ.get("GMD_REF_NAME", "reference")  # name of the reference run (identity mapping solved with Newton-CG)
-REF_MAP = os.environ.get("GMD_REF_MAP_NAME", "Reference")  # legend name of the reference run, paired with "Neural network"
+REF_MAP = os.environ.get("GMD_REF_MAP_NAME", "Reference run")  # legend name of the reference run, paired with "Neural network run"
 NET = "Neural network"  # legend name of the neural-network runs
 NBIT_SHOWN = 20  # the representative retraining budget shown where only one network run is drawn
 

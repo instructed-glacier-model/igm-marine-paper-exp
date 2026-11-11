@@ -331,7 +331,7 @@ def main():
     trajs[0].set_ylabel("Grounding-line change\nalong the flowline (km)")
 
     runs = [Line2D([], [], color=C.COLOUR[C.NBIT_SHOWN], lw=1.2)]
-    names = [f"{C.NET} (N = {C.NBIT_SHOWN})"]
+    names = [f"{C.NET} run (N = {C.NBIT_SHOWN})"]
     runs.append(Line2D([], [], color=C.INK, lw=1.0, ls=C.EXACT_LS))
     names.append(C.REF_MAP)
     fig.legend(

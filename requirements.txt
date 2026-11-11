@@ -1,5 +1,6 @@
 # To redraw the figures (not to run IGM: see README.md, "IGM version")
 numpy
+scipy
 pandas
 matplotlib>=3.8
 xarray

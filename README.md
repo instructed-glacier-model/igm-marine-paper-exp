@@ -17,7 +17,7 @@ One folder per experiment, each with `runs/` (to re-run it: configurations, user
 | Schematic of a marine-terminated glacier | Fig. 1 | [`schematic/README.md`](schematic/README.md) |
 | Calving-front motion on an unconfined ice shelf (Albrecht et al., 2011) | Sect. 4.1, Fig. 2 | [`unconfined_ice_shelf/runs/README.md`](unconfined_ice_shelf/runs/README.md) |
 | Grounding-line migration, MISMIP+ (Asay-Davis et al., 2016) | Sect. 4.2, Fig. 3 | [`mismip_plus/runs/README.md`](mismip_plus/runs/README.md) |
-| Three glaciers: Sermeq Kujalleq, Pine Island Glacier, Mendenhall Glacier | Sect. 5, Figs. 4–6 and 8, Tables 1, 2, C1 | [`glaciers/runs/README.md`](glaciers/runs/README.md) |
+| Three glaciers: Sermeq Kujalleq, Pine Island Glacier, Mendenhall Glacier | Sect. 5, Figs. 4–6, 8 and C1, Tables 1, 2, C1 | [`glaciers/runs/README.md`](glaciers/runs/README.md) |
 | Cost of the reference solver: scaling, and comparison with PISM | Sect. 5.4, App. D, Fig. 7, Table D1 | [`solver_cost/runs/README.md`](solver_cost/runs/README.md) |
 
 ## Redraw the figures

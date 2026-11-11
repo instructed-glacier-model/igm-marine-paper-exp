@@ -1,4 +1,4 @@
-# Three glaciers: reference and neural-network runs (paper Sect. 5; Figs. 4–6 and 8; Tables 1, 2, C1)
+# Three glaciers: reference and neural-network runs (paper Sect. 5; Figs. 4–6, 8 and C1; Tables 1, 2, C1)
 
 Sermeq Kujalleq (Greenland; 150 m grid, 25 yr of ocean warming and prescribed front retreat), Pine Island Glacier
 (Antarctica; 1 km, 100 yr of ocean warming) and Mendenhall Glacier (Alaska; 50 m, 25 yr of rising equilibrium-line
@@ -41,7 +41,7 @@ Run from this folder, in an environment with IGM, one GPU per run.
 | 1 runs | `./run_all.sh` (or one of its 15 commands) | `outputs/<run>/` (`output.nc`, `marine_ts.csv`, `.hydra/config.yaml`) | reference runs 435, 136 and 7 min; network runs 4–134 min (one RTX 4090 each) |
 | 2 Fig. 8 runs | `geometry_response/run.sh` | `outputs/w_*`, `outputs/netreplay_exact_*`, `outputs/replay_*` | see [`geometry_response/README.md`](geometry_response/README.md) |
 | 3 figure data | `python export_figure_data.py` | `../figure/data/` (shipped) | minutes, CPU |
-| 4 figures | `python ../figure/make_figures.py` | `../figure/fig_0{4,5,6,8}_*.{pdf,png}`, `../figure/data/summary.csv` | ~2 min, CPU |
+| 4 figures | `python ../figure/make_figures.py` | `../figure/fig_0{4,5,6,8}_*.{pdf,png}`, `../figure/fig_C1_*.{pdf,png}`, `../figure/data/summary.csv` | ~2 min, CPU |
 
 `configs/<run>.yaml` is the resolved IGM configuration of each run, the authoritative record of every setting;
 `configs/<run>_provenance.txt` its command, host, GPU, IGM commit and the sha256 of its input and user code.
