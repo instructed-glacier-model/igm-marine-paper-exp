@@ -12,7 +12,8 @@ with probe_batch 1), data/solver_scaling.csv for (c). Medians of five solves; co
 Encoding: PISM in the accent orange; IGM MOLHO in ink, IGM SSA in blue; float64 solid with filled circles, float32
 dashed with hollow circles.
 Run: python make_figure.py   (needs numpy, pandas, matplotlib; GMD_COST_XAXIS=spacing puts the grid spacing on x).
-Writes fig_07_solver_cost.{pdf,png} next to this script.
+Writes fig_07_solver_cost.{pdf,png} next to this script (one column, panels stacked); with GMD_FIG_LAYOUT=wide, the
+single-column preprint layout fig_07_solver_cost_wide.{pdf,png} (panels side by side).
 """
 
 import os
@@ -31,7 +32,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CSV_IGM = os.path.join(HERE, "data", "solver_scaling.csv")
 CSV_CMP = os.path.join(HERE, "data", "cpu_gpu_comparison.csv")
 LAYOUT = os.environ.get("GMD_COST_XAXIS", "dofs")  # "dofs": x = number of DOFs, grid spacings as labels; "spacing": x = grid spacing
-OUT = os.path.join(HERE, "fig_07_solver_cost" + ("" if LAYOUT == "dofs" else "_spacing"))
+WIDE = os.environ.get("GMD_FIG_LAYOUT", "column") == "wide"  # "column": 83 mm, panels stacked; "wide": 177 mm, side by side
+OUT = os.path.join(HERE, "fig_07_solver_cost" + ("" if LAYOUT == "dofs" else "_spacing") + ("_wide" if WIDE else ""))
 
 INK, INK2, GRID = "#0b0b0b", "#52514e", "#e1e0d9"
 COL = {"MOLHO": INK, "SSA": "#2a78d6"}
@@ -128,9 +130,13 @@ def main():
     igm = pd.read_csv(CSV_IGM)
     igm = igm[igm.plotted == True] if "plotted" in igm else igm[igm.status == "ok"]  # noqa: E712
 
-    fig = plt.figure(figsize=(83 * MM, 152 * MM))
-    axs = [fig.add_axes([0.17, 0.705, 0.80, 0.245]), fig.add_axes([0.17, 0.425, 0.80, 0.245]),
-           fig.add_axes([0.17, 0.165, 0.80, 0.225])]
+    if WIDE:
+        fig = plt.figure(figsize=(177 * MM, 66 * MM))
+        axs = [fig.add_axes([0.075 + 0.325 * k, 0.30, 0.255, 0.62]) for k in range(3)]
+    else:
+        fig = plt.figure(figsize=(83 * MM, 152 * MM))
+        axs = [fig.add_axes([0.17, 0.705, 0.80, 0.245]), fig.add_axes([0.17, 0.425, 0.80, 0.245]),
+               fig.add_axes([0.17, 0.165, 0.80, 0.225])]
 
     # (a) and (b): times, PISM against IGM
     for ax, key, basis, title in ((axs[0], "bp", "MOLHO", "(a)  Higher order"),
@@ -186,9 +192,26 @@ def main():
             ax.xaxis.set_major_locator(FixedLocator([4, 2, 1, 0.5]))
             ax.xaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v:g}"))
             ax.xaxis.set_minor_locator(NullLocator())
-    for ax in axs[:2]:
-        ax.tick_params(labelbottom=False)
-    axs[2].set_xlabel("Number of velocity DOFs" if LAYOUT == "dofs" else "Grid spacing (km)")
+    xlab = "Number of velocity DOFs" if LAYOUT == "dofs" else "Grid spacing (km)"
+    if WIDE:
+        for ax in axs:
+            ax.set_xlabel(xlab)
+    else:
+        for ax in axs[:2]:
+            ax.tick_params(labelbottom=False)
+        axs[2].set_xlabel(xlab)
+
+    if WIDE:  # one legend line with all entries
+        handles = [Line2D([], [], **PISM_STYLE), Line2D([], [], **style_of("MOLHO", "float64")),
+                   Line2D([], [], **style_of("MOLHO", "float32")), Line2D([], [], **style_of("SSA", "float64")),
+                   Line2D([], [], **style_of("SSA", "float32"))]
+        labels = ["PISM, 32 CPU cores", "IGM MOLHO, float64", "IGM MOLHO, float32", "IGM SSA, float64", "IGM SSA, float32"]
+        fig.legend(handles=handles, labels=labels, loc="lower center", ncol=5, bbox_to_anchor=(0.5, 0.0),
+                   handlelength=2.6, columnspacing=1.4, handletextpad=0.6)
+        fig.savefig(OUT + ".pdf")
+        fig.savefig(OUT + ".png", dpi=600)
+        print(f"written {os.path.basename(OUT)}.pdf/.png")
+        return
 
     # legend: PISM alone on a first, centred line; the IGM entries in two columns below
     fig.legend(handles=[Line2D([], [], **PISM_STYLE)], labels=["PISM, 32 CPU cores"], loc="lower center", ncol=1,

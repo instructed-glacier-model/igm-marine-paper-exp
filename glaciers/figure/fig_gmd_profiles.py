@@ -5,7 +5,8 @@ reference run at the end, and the surface speed at t = 0.
 One column, one panel per glacier. Left axis: elevation (m); the bed, the water and the ice at t = 0 shaded, the
 ice of the reference run at the end as a dashed outline (surface, base and front). Right axis: surface speed at t = 0. Distance runs along the flowline of Fig. 4, from its
 upstream end. Data: data/maps_GLACIER.nc (fields at t = 0 and at the end, and the flowline). Run: python fig_gmd_profiles.py
-(needs scipy); writes fig_C1_flowline_profiles.{pdf,png}.
+(needs scipy); writes fig_C1_flowline_profiles.{pdf,png} (one column, panels stacked) and, with GMD_FIG_LAYOUT=wide
+or make_figures.py, the single-column preprint layout fig_C1_flowline_profiles_wide.{pdf,png} (panels side by side).
 """
 
 import os
@@ -56,12 +57,18 @@ def outline(ax, s, ice, low, surf, **kw):
         ax.plot([s[k], s[k]], [low[k], surf[k]], **kw)
 
 
-def main():
+def main(wide=None):
+    """wide: panels side by side (177 x 62 mm) instead of stacked (83 x 135 mm); default from GMD_FIG_LAYOUT."""
+    if wide is None:
+        wide = os.environ.get("GMD_FIG_LAYOUT", "column") == "wide"
     C.style()
-    fig = plt.figure(figsize=(83 * C.MM, 135 * C.MM))
+    fig = plt.figure(figsize=(177 * C.MM, 62 * C.MM) if wide else (83 * C.MM, 135 * C.MM))
     axes = []
     for k, g in enumerate(C.GLACIERS):
-        ax = fig.add_axes([0.16, 0.765 - 0.29 * k, 0.69, 0.195])
+        if wide:
+            ax = fig.add_axes([0.085 + 0.32 * k, 0.33, 0.185, 0.56])
+        else:
+            ax = fig.add_axes([0.16, 0.765 - 0.29 * k, 0.69, 0.195])
         rho, rho_w = RHO[g["key"]]
         with C.maps(g) as ds:
             xs, ys = ds.flowline_x.values, ds.flowline_y.values
@@ -101,13 +108,14 @@ def main():
         ax2.spines["top"].set_visible(False)
         ax.set_title(f"({'abc'[k]})  {g['name']}", loc="left", fontsize=C.FONT, fontweight="bold", pad=3)
         axes.append(ax)
-    axes[-1].set_xlabel("Distance along the flowline (km)")
+    for ax in (axes if wide else axes[-1:]):
+        ax.set_xlabel("Distance along the flowline (km)")
     handles = [Patch(facecolor=ICE, edgecolor=C.INK, lw=0.6), Patch(facecolor=BED, lw=0), Patch(facecolor=WATER, lw=0),
                Line2D([], [], color=C.INK, lw=0.7, ls=(0, (2.5, 1.8))), Line2D([], [], color=C.COLOUR[5], lw=0.7)]
     labels = ["Ice at t = 0", "Bed", "Water", "Ice at the end (reference run)", "Surface speed at t = 0"]
-    fig.legend(handles, labels, loc="lower center", ncol=2, bbox_to_anchor=(0.52, 0.0), handlelength=1.8,
-               columnspacing=1.2, handletextpad=0.5, frameon=False)
-    C.save(fig, "fig_C1_flowline_profiles")
+    fig.legend(handles, labels, loc="lower center", ncol=5 if wide else 2, bbox_to_anchor=(0.5 if wide else 0.52, 0.0),
+               handlelength=1.8, columnspacing=1.2, handletextpad=0.5, frameon=False)
+    C.save(fig, "fig_C1_flowline_profiles" + ("_wide" if wide else ""))
 
 
 if __name__ == "__main__":
