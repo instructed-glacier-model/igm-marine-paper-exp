@@ -2,10 +2,10 @@
 
 ```bash
 python make_figure.py      # seconds; needs numpy, pandas, matplotlib. GMD_COST_XAXIS=spacing puts the grid spacing on x
-GMD_FIG_LAYOUT=wide python make_figure.py   # the single-column (preprint) layout, fig_07_solver_cost_wide
+GMD_FIG_LAYOUT=wide python make_figure.py   # fig_07_solver_cost_wide: panels side by side, the layout of the single-column manuscript
 ```
 
-Writes `fig_07_solver_cost.{pdf,png}` (the PDF is Fig. 7 of the paper; the `_wide` variant has the three panels side by side): the cost of a cold velocity solve on the
+Writes `fig_07_solver_cost.{pdf,png}` (Fig. 7 of the two-column version; `fig_07_solver_cost_wide.pdf`, with the three panels side by side, is Fig. 7 of the single-column manuscript): the cost of a cold velocity solve on the
 Pine Island geometry at 4, 2, 1 and 0.5 km, against the number of velocity DOFs. (a) PISM's Blatter–Pattyn solver
 with two vertical levels on 32 CPU cores against IGM's MOLHO basis on one RTX 4090; (b) SSA in both codes; (c) peak
 GPU memory of the IGM solves. PISM in orange; IGM MOLHO in ink, IGM SSA in blue; float64 solid with filled circles,

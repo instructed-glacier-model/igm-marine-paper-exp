@@ -2,8 +2,9 @@
 
 Material to reproduce the experiments and figures of the paper
 
-> Gregov, T., Rosier, S. H. R., Leger, T. P. M., Finley, B. D., Vieli, A., and Jouvet, G.: Extension of IGM to marine-
-> and lake-terminated glaciers (v3.3.0), submitted to *Geoscientific Model Development*.
+> Gregov, T., Rosier, S. H. R., Leger, T. P. M., Finley, B. D., Vieli, A., and Jouvet, G.: Modeling marine- and
+> lake-terminated glaciers on GPUs with physics-informed machine learning (IGM v3.3.0), submitted to *Geoscientific
+> Model Development*.
 
 IGM: <https://github.com/instructed-glacier-model/igm> — documentation: <https://igm-model.org/>
 
@@ -31,7 +32,8 @@ python solver_cost/figure/make_figure.py
 ```
 
 Each script writes its figure next to itself, under the file name of the manuscript (`fig_02_…pdf`, …); the shipped
-PDFs are these. Fig. 1 is built with `pdflatex`. The figures are set in Nimbus Sans (package `fonts-urw-base35`);
+PDFs are these. Figs. 7 and C1 exist in two layouts: `*_wide.pdf` (panels side by side) for the single-column
+manuscript, and the stacked `fig_07_solver_cost.pdf` / `fig_C1_flowline_profiles.pdf` for the two-column version. Fig. 1 is built with `pdflatex`. The figures are set in Nimbus Sans (package `fonts-urw-base35`);
 without it the scripts fall back to Helvetica, Arial or DejaVu Sans.
 
 ## IGM version

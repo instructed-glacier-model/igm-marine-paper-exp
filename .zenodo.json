@@ -1,7 +1,7 @@
 {
-  "title": "Experiments of the IGM v3.3.0 paper on marine- and lake-terminated glaciers (GMD)",
+  "title": "Experiments of the paper \"Modeling marine- and lake-terminated glaciers on GPUs with physics-informed machine learning (IGM v3.3.0)\"",
   "upload_type": "software",
-  "description": "Configuration files, user modules, input data, scripts and derived data to reproduce the experiments and figures of the paper \"Extension of IGM to marine- and lake-terminated glaciers (v3.3.0)\" submitted to Geoscientific Model Development: the calving-front verification on the unconfined ice shelf of Albrecht et al. (2011), the MISMIP+ experiments, the applications to Sermeq Kujalleq, Pine Island Glacier and Mendenhall Glacier (reference and neural-network runs), and the cost of the Newton-CG solver, including its comparison with PISM.",
+  "description": "Configuration files, user modules, input data, scripts and derived data to reproduce the experiments and figures of the paper \"Modeling marine- and lake-terminated glaciers on GPUs with physics-informed machine learning (IGM v3.3.0)\" submitted to Geoscientific Model Development: the calving-front verification on the unconfined ice shelf of Albrecht et al. (2011), the MISMIP+ experiments, the applications to Sermeq Kujalleq, Pine Island Glacier and Mendenhall Glacier (reference and neural-network runs), and the cost of the Newton-CG solver, including its comparison with PISM.",
   "creators": [
     {"name": "Gregov, Thomas", "affiliation": "Université de Lausanne"},
     {"name": "Rosier, Sebastian H. R.", "affiliation": "Universität Zürich"},
