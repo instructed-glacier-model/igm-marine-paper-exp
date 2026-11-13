@@ -38,10 +38,10 @@ without it the scripts fall back to Helvetica, Arial or DejaVu Sans.
 
 ## IGM version
 
-The `dev` branch of IGM at commit `b15cdce2`:
+IGM v3.3.0:
 
 ```bash
-pip install git+https://github.com/instructed-glacier-model/igm.git@b15cdce2
+pip install igm-model==3.3.0
 ```
 
 All IGM runs used one NVIDIA RTX 4090 (24 GiB) per run, Python 3.10 and TensorFlow 2.17; the PISM runs of the
